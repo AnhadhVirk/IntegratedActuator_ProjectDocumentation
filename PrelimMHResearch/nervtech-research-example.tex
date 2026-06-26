@@ -1,0 +1,86 @@
+\documentclass[internal]{nervtech-research}
+
+\nervsetup{
+  company={NervTech},
+  project={Stator and Rotor Dynamics Analysis},
+  document={Preliminary Research Note},
+  subtitle={Problem framing, evidence map, assumptions, and early design direction},
+  docid={NT-IRA-RES-001},
+  revision={A},
+  status={Exploratory Draft},
+  author={NervTech Research},
+  owner={Robotics Systems Engineering},
+  date={2026-06-25},
+  stage={Preliminary Research},
+  question={Which actuator architecture gives the best path to a compact, safe, and controllable robotic joint prototype?},
+  keywords={integrated actuator, robotics, torque density, control architecture, preliminary research},
+  abstract={This document captures early research for the Integrated Robotic Actuator project. It is intended to separate observations, assumptions, risks, and design direction before committing to a detailed technical design.}
+}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\newpage
+
+\section{Research Snapshot}
+
+\researchsnapshot
+  {Build a compact integrated robotic actuator that combines motor, reduction, sensing, drive electronics, and control firmware.}
+  {The highest leverage early decision is the actuator architecture, because it constrains torque density, controllability, thermal behaviour, and manufacturability.}
+  {The true operating envelope is still uncertain: load profile, duty cycle, heat rejection, encoder resolution, and gearbox backlash all need validation.}
+  {Prototype the smallest credible bench rig and measure torque, speed, temperature rise, backlash, and closed-loop response.}
+
+\section{Problem Framing}
+
+\begin{researchquestion}[System Direction]
+What architecture can demonstrate a credible portfolio-grade actuator while still being feasible with undergraduate-level tools, budget, and testing equipment?
+\end{researchquestion}
+
+The preliminary research phase should not over-specify the product. Its job is to reduce uncertainty and identify the design direction that is most likely to produce a demonstrable robotic actuator prototype.
+
+\begin{hypothesisbox}[Architecture]
+A modular integrated actuator with a BLDC motor, compact reduction stage, magnetic encoder, current sensing, and embedded field-oriented control is likely to provide the best balance between technical ambition and achievable implementation.
+\end{hypothesisbox}
+
+\section{Evidence Map}
+
+\begin{evidencetable}
+\evidencerow{Integrated packaging is valuable}{Combining actuation, sensing, and drive control reduces wiring complexity and makes the unit easier to reuse across robots.}{Project observation}{Medium}
+\evidencerow{Backlash matters}{Low backlash is important for repeatable joint control and credible closed-loop demonstrations.}{Bench-test requirement}{High}
+\evidencerow{Thermal limits may dominate}{Small actuators can reach thermal limits before electrical or mechanical limits during sustained load.}{Engineering assumption}{Medium}
+\end{evidencetable}
+
+\section{Assumptions to Validate}
+
+\begin{assumptiontable}
+\assumptionrow{Motor torque is sufficient}{Sets whether the reduction ratio and motor frame size are credible.}{Measure no-load speed and loaded torque on a bench rig.}{Controls}
+\assumptionrow{Encoder resolution is adequate}{Limits position accuracy and velocity estimation quality.}{Compare commanded and measured step response.}{Firmware}
+\assumptionrow{Thermal rise is manageable}{Determines continuous operating limits.}{Run fixed-duty thermal test with logging.}{Electrical}
+\end{assumptiontable}
+
+\section{Open Gaps}
+
+\begin{gapbox}[Unknowns]
+The research note should explicitly track what is not known yet: final motor choice, gearbox type, torque target, power supply envelope, controller current limit, and safety cut-off design.
+\end{gapbox}
+
+\begin{riskbox}[Prototype Risk]
+The main early risk is selecting parts before the test envelope is clear. Keep the first rig instrumented and conservative, especially around power electronics and rotating hardware.
+\end{riskbox}
+
+\section{Research Backlog}
+
+\begin{researchbacklog}
+\backlogrow{R-001}{Compare candidate actuator architectures: direct drive, belt reduction, planetary gearbox, cycloidal concept.}{Architecture trade study}{High}
+\backlogrow{R-002}{Build a first-order torque-speed and thermal model.}{Notebook with plots}{High}
+\backlogrow{R-003}{Define safety plan for power bring-up and moving-mechanism tests.}{Bring-up checklist}{High}
+\backlogrow{R-004}{Identify demo scenarios for the final portfolio video.}{Demo storyboard}{Medium}
+\end{researchbacklog}
+
+\section{Preliminary Direction}
+
+\begin{decisionbox}[Next Iteration]
+Proceed toward a bench-testable integrated actuator module. The next document should convert this research into measurable requirements, architecture diagrams, and a verification plan.
+\end{decisionbox}
+
+\end{document}
