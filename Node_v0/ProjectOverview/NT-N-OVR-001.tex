@@ -14,10 +14,8 @@
   audience={Non-technical stakeholders; Portfolio reviewers},
   tagline={Node: The Building Block of NervTech Solutions},
   purpose={To pave the way for NervTech robotic systems, a robust, multipurpose actuator must be developed that has high precision, bandwith and torque capabilities. The Node v0 fills this need, while being
-           developed in house without the extra integration time and cost incurred by OEM integrated actuators.},
-  summary={This overview is intentionally non-technical.
-  It covers the current stakeholder need for the product, how it fits into the growth of NervTech, the requirements that define success for the product and finally a roadmap to achieve this success.
-  It avoids equations and low-level implementation detail so the project can be understood by reviewers, collaborators, mentors, and potential employers.}
+           developed in house without the extra integration time and financial cost incurred by OEM integrated actuators.},
+  summary={This overview will define the scope, goals and key deliverables, including timelines, of the Node v0 project. This is essential in ensuring project success is met in a desirable timeframe.}
 }
 
 \begin{document}
@@ -28,69 +26,62 @@
 \section{Project Snapshot}
 
 \projectsnapshot
-{A compact robotic actuator module that combines motion generation, sensing, electronics, and control in one reusable unit.}
-{Robots become easier to build when the joint actuator is reliable, measurable, and simple to integrate.}
+{A compact, easily integratable robotic actuator module that combines motion generation, sensing, electronics, and control in one reusable unit.}
+{Robotic systems become easier to build when the joint actuator is robust, reusable and self-contained in terms of control and sensing.}
 {The project is in early architecture and prototype planning.}
-{A bench-tested actuator module with plots, photos, CAD renders, and a short demonstration video.}
+{A 3D model of the first prototype in a simulated environment including the real life kinematics and dynamics of the system.}
 
-\section{What the Project Is}
+\subsection*{Background}
+As the labour automation industry becomes more expansive, older notions of developing
+highly specialised robotic systems for specific industries are becoming obsolete.
+As tasks with inherent uncertainty are being targeted for automation, distributed,
+easily configurable robotic systems will form the bedrock of the next generation of
+industry.
+NervTech systems aims to be at the forefront of this movement, and the Node v0 project
+is a key step in that direction.
+The project will develop a reusable, highly versatile and easily integratable robotic
+actuator module that can be used in a variety of NervTech robotic systems.
+The eventual goal will be to develop a family of robotic components, including arms,
+legs and end effectors, that can be easily configured to form a variety of robotic
+systems for different applications.
 
-\begin{overviewbox}[Plain-Language Summary]
-  The Integrated Robotic Actuator is a self-contained robotic joint module. Instead of treating the motor, gearbox, sensors, electronics, and software as separate parts, the project brings them together into one engineered actuator package.
-\end{overviewbox}
+\section{Problem Statement}
+\textit{NervTech requires a compact, modular actuator that can provide highly precise controlled robotic motion for use in future distributed robotic platforms.
+  The actuator must integrate sensing, control, communication, and mechanical mounting into a single reusable unit.
+  Without such a platform, future robotic systems would require repeated custom integration of motors, sensors, drivers, and control hardware, increasing development time and reducing design consistency.}
 
-The goal is not only to make something move. The goal is to show a complete robotics
-engineering workflow: research, design, prototyping, testing, documentation, and
-demonstration.
+\section{Goals}
+\begin{goalstable}
+  \goalrow{The actuator should provide high precision torque and position control in high motion frequency applications.}{The actuator should be able to move standard payloads up to 20kgs at frequencies comparable to human motion.}{Precision and Versatility}
+  \goalrow{The actuator should be reusable and easily integratable into a variety of frames for robotic systems.}{The actuator should be able to be mounted and dismounted with conventional tools from any of the standard NervTech linkages and/or frames.}{Reusability and Versatility}
+  \goalrow{The actuator should be able to provide a variety of sensing capabilities for advanced control.}{The actuator should be able to provide position, velocity, torque, and temperature sensing capabilities with minimal noise.}{Control and Versatility}
+  \goalrow{The actuator should be able to provide a variety of communication capabilities with minimal latency.}{The actuator should be able to communicate with a variety of control systems using at least 2 standard industrial communication protocols, which can robustly deliver packets with sub-millisecond latency.}{Control and Communication}
+  \goalrow{The actuator should be able to be powered by standard LV external DC sources.}{The actuator should be able to be powered via USB-C or standard molex connectors, from power supplies ranging from 24V - 48V.}{Versatility and Power}
+  \goalrow{The actuator should include standard industrial safety features.}{The actuator should be able to provide safety features such as overcurrent protection, overtemperature protection, Safe Torque Off voltage lines and programmable max torque thresholds.}{Safety and Reliability}
+  \goalrow{The actuator should be durable and reliable for long term use.}{The actuator should be able to operate for at least 10,000 hours of continuous operation without failure, and should be able to withstand standard industrial environmental conditions including dust and high moisture.}{Reliability and Durability}
+\end{goalstable}
 
-\section{Why It Matters}
+\section{Deliverables}
+\begin{deliverablestable}
+\deliverablerow
+  {NT-N-D1}{Initial project overview}
+  {Plain-language document defining the product need, goals, requirements, success criteria, and roadmap.}
+  {4/07/2026}
 
-\begin{valuebox}[Project Value]
-  A well-designed actuator is a building block for many robotic systems, including arms, mobile robots, legged robots, grippers, and educational robotics platforms.
-\end{valuebox}
+\deliverablerow
+  {NT-N-D2}{Preliminary research reports}
+  {Comparison of actuator housing architectures, speed reducer architectures, power control architectures, communication protocols, safety feature implementations and motion controller designs.}
+  {15/07/2026}
 
-For a portfolio, this project is valuable because it connects mechanical design,
-electronics, embedded control, safety testing, data collection, and clear
-communication.
+\deliverablerow
+  {NT-N-D3}{Technical design documents}
+  {Mechanical, electrical, firmware and verification design documents, plus simulated environment using CAD, for the Node v0 actuator.}
+  {26/07/2026}
 
-\section{Who This Is For}
-
-\begin{stakeholdertable}
-  \stakeholderrow{Engineering reviewers}{Whether the project has credible technical depth.}{Shows architecture, testing intent, and visible deliverables.}
-  \stakeholderrow{Research mentors}{Whether the project can connect to control, learning, or neuromorphic sensing.}{Frames the project as a reusable experimental platform.}
-  \stakeholderrow{Non-technical stakeholders}{What the project does and why it matters.}{Explains the project without relying on formulas or jargon.}
-\end{stakeholdertable}
-
-\section{Current Status}
-
-\begin{statusbox}[Now]
-  The project is at the point where the major design direction should be selected, documented, and validated through a small bench prototype.
-\end{statusbox}
-
-\begin{milestonetable}
-  \milestonerow{Concept}{Define the actuator purpose and intended demonstration.}{Current}{In progress}
-  \milestonerow{Architecture}{Choose motor, sensing, gearbox, controller, and package strategy.}{Next}{Planned}
-  \milestonerow{Prototype}{Build and test a first integrated bench unit.}{Following}{Planned}
-  \milestonerow{Portfolio}{Publish video, plots, CAD renders, README, and lessons learned.}{Final}{Planned}
-\end{milestonetable}
-
-\section{Roadmap}
-
-\begin{roadmaptable}
-  \roadmaprow{Phase 1}{Research and concept selection.}{Preliminary research note}
-  \roadmaprow{Phase 2}{Technical design and requirements.}{Engineering design document}
-  \roadmaprow{Phase 3}{Prototype build and bench testing.}{Photos, plots, test logs}
-  \roadmaprow{Phase 4}{Portfolio packaging and public explanation.}{GitHub README and demo video}
-\end{roadmaptable}
-
-\section{Communication Positioning}
-
-\begin{plainstakeholderbox}[How to Explain It]
-  NervTech is building a compact actuator module that can become the motion core of future robotic systems. The project demonstrates not just a part, but an engineering process: make a design decision, build it, test it, learn from it, and document the result clearly.
-\end{plainstakeholderbox}
-
-\begin{riskbox}[Communication Risk]
-  Avoid describing the project as a finished product too early. Present it as a serious prototype and learning platform until the actuator has been built and tested.
-\end{riskbox}
+\deliverablerow
+  {NT-N-D4}{Prototype test report}
+  {Bench-test evidence including motion response, repeatability, current draw, fault behaviour, and lessons learned.}
+  {21/08/2026}
+\end{deliverablestable}
 
 \end{document}

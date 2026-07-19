@@ -1,23 +1,14 @@
-%% nervtech-overview.cls
-%% LaTeX class for NervTech non-technical project overviews
-%% Version: 1.0.0 | Date: 2026-06-25
-%%
-%% Usage:
-%%   \documentclass[public]{nervtech-overview}
-%%   \nervsetup{project={Integrated Robotic Actuator}, document={Project Overview}}
-%%   \begin{document}
-%%   \maketitle
-%%   ...
-%%   \end{document}
-%%
-%% Recommended compiler: XeLaTeX or LuaLaTeX.
+%% nervtech-overview.cls % LaTeX class for NervTech non-technical project overviews %
+%Version: 1.0.1 | Date: 2026-07-04 % % Usage: %
+%\documentclass[public]{nervtech-overview} % \nervsetup{project={Integrated Robotic
+%Actuator}, document={Project Overview}} % \begin{document} % \maketitle % ... %
+%\end{document} % % Recommended compiler: XeLaTeX or LuaLaTeX.
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{nervtech-overview}[2026/06/25 v1.0.0 NervTech Non-Technical Project Overview Class]
+\ProvidesClass{nervtech-overview}[2026/07/04 v1.0.1 NervTech Non-Technical Project Overview Class]
 
-% -----------------------------------------------------------------------------
-% Class options
-% -----------------------------------------------------------------------------
+% ----------------------------------------------------------------------------- Class
+% options -----------------------------------------------------------------------------
 \newif\ifno@draft
 \newif\ifno@watermark
 \newif\ifno@confidential
@@ -42,8 +33,7 @@
 
 \LoadClass{article}
 
-% -----------------------------------------------------------------------------
-% Packages
+% ----------------------------------------------------------------------------- Packages
 % -----------------------------------------------------------------------------
 \RequirePackage[margin=23mm,top=25mm,bottom=25mm,headheight=22pt]{geometry}
 \RequirePackage{iftex}
@@ -65,6 +55,7 @@
 \RequirePackage{float}
 \RequirePackage{hyperref}
 \RequirePackage{microtype}
+\RequirePackage{colortbl}
 
 % -----------------------------------------------------------------------------
 % Typography
@@ -96,8 +87,8 @@
 \setlength{\parskip}{7pt plus 2pt minus 1pt}
 \setlist{itemsep=2pt,topsep=4pt,leftmargin=1.45em}
 
-% -----------------------------------------------------------------------------
-% NervTech brand colours
+% ----------------------------------------------------------------------------- NervTech
+% brand colours
 % -----------------------------------------------------------------------------
 \definecolor{NervBlack}{HTML}{090D12}
 \definecolor{NervGraphite}{HTML}{151B23}
@@ -118,9 +109,8 @@
 \colorlet{noMuted}{NervSteel}
 \color{noText}
 
-% -----------------------------------------------------------------------------
-% Metadata keys
-% -----------------------------------------------------------------------------
+% ----------------------------------------------------------------------------- Metadata
+% keys -----------------------------------------------------------------------------
 \makeatletter
 \def\no@company{NervTech}
 \def\no@project{Integrated Robotic Actuator}
@@ -163,8 +153,7 @@
 \newcommand{\nervclassification}{\no@classification}
 \makeatother
 
-% -----------------------------------------------------------------------------
-% Hyperref
+% ----------------------------------------------------------------------------- Hyperref
 % -----------------------------------------------------------------------------
 \hypersetup{
   colorlinks=true,
@@ -177,22 +166,21 @@
   pdfcreator={LaTeX with nervtech-overview.cls}
 }
 
-% -----------------------------------------------------------------------------
-% Section styling
-% -----------------------------------------------------------------------------
+% ----------------------------------------------------------------------------- Section
+% styling -----------------------------------------------------------------------------
 \titleformat{\section}
-  {\Large\bfseries\color{NervGraphite}}
-  {\llap{\color{NervBlue}\rule[-0.2em]{3pt}{1.35em}\hspace{0.6em}}\thesection}
-  {0.75em}
-  {\MakeUppercase}
+{\Large\bfseries\color{NervGraphite}}
+{\llap{\color{NervBlue}\rule[-0.2em]{3pt}{1.35em}\hspace{0.6em}}\thesection}
+{0.75em}
+{\MakeUppercase}
 \titleformat{\subsection}{\large\bfseries\color{NervGraphite}}{\thesubsection}{0.75em}{}
 \titleformat{\subsubsection}{\normalsize\bfseries\color{NervSlate}}{\thesubsubsection}{0.75em}{}
 \titlespacing*{\section}{0pt}{1.35em}{0.55em}
 \titlespacing*{\subsection}{0pt}{1.0em}{0.35em}
 \titlespacing*{\subsubsection}{0pt}{0.75em}{0.25em}
 
-% -----------------------------------------------------------------------------
-% Tables and captions
+% ----------------------------------------------------------------------------- Tables
+% and captions
 % -----------------------------------------------------------------------------
 \captionsetup{font=small,labelfont={bf,color=NervGraphite},textfont={color=NervSlate},margin=8pt}
 \renewcommand{\arraystretch}{1.24}
@@ -201,8 +189,8 @@
 \newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
 \newcolumntype{R}[1]{>{\raggedleft\arraybackslash}p{#1}}
 
-% -----------------------------------------------------------------------------
-% Header and footer
+% ----------------------------------------------------------------------------- Header
+% and footer
 % -----------------------------------------------------------------------------
 \makeatletter
 \pagestyle{fancy}
@@ -217,75 +205,74 @@
 \renewcommand{\footrule}{\hbox to\headwidth{\color{NervMist}\leaders\hrule height \footrulewidth\hfill}}
 \makeatother
 
-% -----------------------------------------------------------------------------
-% Title page
-% -----------------------------------------------------------------------------
+% ----------------------------------------------------------------------------- Title
+% page -----------------------------------------------------------------------------
 \makeatletter
 \renewcommand{\maketitle}{%
   \begin{titlepage}
-  \thispagestyle{empty}
-  \begin{tikzpicture}[remember picture,overlay]
+    \thispagestyle{empty}
+    \begin{tikzpicture}[remember picture,overlay]
     \fill[NervBlack] (current page.north west) rectangle ([yshift=-110mm]current page.north east);
     \fill[NervBlue] ([yshift=-110mm]current page.north west) rectangle ([yshift=-115mm]current page.north east);
     \fill[NervCyan] ([xshift=22mm,yshift=-115mm]current page.north west) rectangle ([xshift=100mm,yshift=-118mm]current page.north west);
     \draw[NervCyan,opacity=0.35,line width=0.6pt] ([xshift=-12mm,yshift=-18mm]current page.north east) -- ([xshift=-75mm,yshift=-104mm]current page.north east);
     \draw[NervBlue,opacity=0.55,line width=1.2pt] ([xshift=-36mm,yshift=-16mm]current page.north east) -- ([xshift=-128mm,yshift=-110mm]current page.north east);
     \fill[NervCyan,opacity=0.11] ([xshift=-47mm,yshift=-27mm]current page.north east) circle (20mm);
-  \end{tikzpicture}
-  \vspace*{11mm}
-  {\color{white}
-    \begin{minipage}[t]{0.60\textwidth}
-      {\fontsize{22}{24}\selectfont\bfseries\no@company}\par
-      \vspace{2mm}
-      {\small\MakeUppercase{Robotics Systems Overview}}\par
-    \end{minipage}\hfill
-    \begin{minipage}[t]{0.32\textwidth}\raggedleft
-      \ifx\no@logo\@empty
-        {\large\bfseries NT}\;{\color{NervCyan}\rule{18mm}{1.4pt}}\par
-      \else
-        \includegraphics[height=16mm,keepaspectratio]{\no@logo}\par
-      \fi
-      \vspace{3mm}
-      {\small\color{NervCyan}\MakeUppercase{\no@classification}}\par
-    \end{minipage}
-  }
-  \vspace*{18mm}
-  {\color{white}
-    {\fontsize{15}{18}\selectfont\color{NervCyan}\bfseries\no@tagline}\par
-    \vspace{6mm}
-    {\hyphenpenalty=10000\exhyphenpenalty=10000\fontsize{28}{33}\selectfont\bfseries\raggedright\no@document}\par
-    \vspace{4mm}
-    {\fontsize{13}{16}\selectfont\color{NervMist}\no@subtitle}\par
-  }
-  \begin{tikzpicture}[remember picture,overlay]
+    \end{tikzpicture}
+    \vspace*{11mm}
+    {\color{white}
+      \begin{minipage}[t]{0.60\textwidth}
+        {\fontsize{22}{24}\selectfont\bfseries\no@company}\par
+        \vspace{2mm}
+        {\small\MakeUppercase{Robotics Systems Overview}}\par
+      \end{minipage}\hfill
+      \begin{minipage}[t]{0.32\textwidth}\raggedleft
+        \ifx\no@logo\@empty
+          {\large\bfseries NT}\;{\color{NervCyan}\rule{18mm}{1.4pt}}\par
+        \else
+          \includegraphics[height=16mm,keepaspectratio]{\no@logo}\par
+        \fi
+        \vspace{3mm}
+        {\small\color{NervCyan}\MakeUppercase{\no@classification}}\par
+      \end{minipage}
+    }
+    \vspace*{18mm}
+    {\color{white}
+      {\fontsize{15}{18}\selectfont\color{NervCyan}\bfseries\no@tagline}\par
+      \vspace{6mm}
+      {\hyphenpenalty=10000\exhyphenpenalty=10000\fontsize{28}{33}\selectfont\bfseries\raggedright\no@document}\par
+      \vspace{4mm}
+      {\fontsize{13}{16}\selectfont\color{NervMist}\no@subtitle}\par
+    }
+    \begin{tikzpicture}[remember picture,overlay]
     \node[anchor=north west,fill=white,draw=NervMist,rounded corners=2mm,line width=0.5pt,inner xsep=5mm,inner ysep=4mm,text width=\dimexpr\paperwidth-54mm\relax]
-      at ([xshift=22mm,yshift=-126mm]current page.north west) {%
-        {\scriptsize\bfseries\color{NervSteel}\MakeUppercase{Project}}\par\vspace{1mm}
-        {\Large\bfseries\color{NervGraphite}\no@project}\par
-      };
-  \end{tikzpicture}
-  \vspace*{38mm}
-  \begin{tcolorbox}[colback=white,colframe=NervMist,boxrule=0.5pt,arc=2mm,left=5mm,right=5mm,top=4mm,bottom=4mm,width=\textwidth]
-    \begin{tabularx}{\textwidth}{@{}L{28mm}Y L{25mm}Y@{}}
-      \textbf{Document ID} & \no@docid & \textbf{Revision} & \no@revision \\
-      \textbf{Status} & \no@status & \textbf{Date} & \no@date \\
-      \textbf{Audience} & \no@audience & \textbf{Owner} & \no@owner \\
-      \textbf{Author} & \no@author & \textbf{Class} & \no@classification \\
-    \end{tabularx}
-  \end{tcolorbox}
-  \vspace{5mm}
-  \begin{tcolorbox}[colback=NervPaper,colframe=NervMist,boxrule=0pt,arc=2mm,left=5mm,right=5mm,top=4mm,bottom=4mm]
-    {\bfseries\color{NervGraphite}Purpose}\par\vspace{1mm}
-    {\color{NervSlate}\no@purpose}
-  \end{tcolorbox}
-  \ifx\no@summary\@empty\else
-    \vspace{3mm}
-    \begin{tcolorbox}[colback=white,colframe=NervMist,boxrule=0.5pt,arc=2mm,left=5mm,right=5mm,top=4mm,bottom=4mm]
-      \textbf{Summary}\par\vspace{1mm}\no@summary
+    at ([xshift=22mm,yshift=-126mm]current page.north west) {%
+      {\scriptsize\bfseries\color{NervSteel}\MakeUppercase{Project}}\par\vspace{1mm}
+      {\Large\bfseries\color{NervGraphite}\no@project}\par
+    };
+    \end{tikzpicture}
+    \vspace*{38mm}
+    \begin{tcolorbox}[colback=white,colframe=NervMist,boxrule=0.5pt,arc=2mm,left=5mm,right=5mm,top=4mm,bottom=4mm,width=\textwidth]
+      \begin{tabularx}{\textwidth}{@{}L{28mm}Y L{25mm}Y@{}}
+        \textbf{Document ID} & \no@docid    & \textbf{Revision} & \no@revision       \\
+        \textbf{Status}      & \no@status   & \textbf{Date}     & \no@date           \\
+        \textbf{Audience}    & \no@audience & \textbf{Owner}    & \no@owner          \\
+        \textbf{Author}      & \no@author   & \textbf{Class}    & \no@classification \\
+      \end{tabularx}
     \end{tcolorbox}
-  \fi
-  \vfill
-  {\small\color{NervSteel}\textcopyright\ \the\year\ \no@company. All rights reserved.}
+    \vspace{5mm}
+    \begin{tcolorbox}[colback=NervPaper,colframe=NervMist,boxrule=0pt,arc=2mm,left=5mm,right=5mm,top=4mm,bottom=4mm]
+      {\bfseries\color{NervGraphite}Purpose}\par\vspace{1mm}
+      {\color{NervSlate}\no@purpose}
+    \end{tcolorbox}
+    \ifx\no@summary\@empty\else
+      \vspace{3mm}
+      \begin{tcolorbox}[colback=white,colframe=NervMist,boxrule=0.5pt,arc=2mm,left=5mm,right=5mm,top=4mm,bottom=4mm]
+        \textbf{Summary}\par\vspace{1mm}\no@summary
+      \end{tcolorbox}
+    \fi
+    \vfill
+    {\small\color{NervSteel}\textcopyright\ \the\year\ \no@company. All rights reserved.}
   \end{titlepage}
   \setcounter{page}{1}
 }
@@ -299,15 +286,14 @@
   \RequirePackage{eso-pic}
   \AddToShipoutPictureBG{%
     \begin{tikzpicture}[remember picture,overlay]
-      \node[rotate=35,scale=8,text=NervMist,opacity=0.20] at (current page.center) {DRAFT};
+    \node[rotate=35,scale=8,text=NervMist,opacity=0.20] at (current page.center) {DRAFT};
     \end{tikzpicture}%
   }
 \fi
 \makeatother
 
-% -----------------------------------------------------------------------------
-% Overview callouts
-% -----------------------------------------------------------------------------
+% ----------------------------------------------------------------------------- Overview
+% callouts -----------------------------------------------------------------------------
 \tcbset{
   nobox/.style={enhanced,breakable,sharp corners=south,arc=1.2mm,boxrule=0pt,leftrule=2.6mm,left=3mm,right=3mm,top=2mm,bottom=2mm,fonttitle=\bfseries,coltitle=NervGraphite}
 }
@@ -319,9 +305,8 @@
 \newtcolorbox{riskbox}[1][]{nobox,colback=orange!6!white,colframe=NervAmber,title={Concern\ifstrempty{#1}{}{ -- #1}}}
 \newtcolorbox{plainstakeholderbox}[1][]{nobox,colback=white,colframe=NervViolet,title={Stakeholder Note\ifstrempty{#1}{}{ -- #1}}}
 
-% -----------------------------------------------------------------------------
-% Overview tables
-% -----------------------------------------------------------------------------
+% ----------------------------------------------------------------------------- Overview
+% tables -----------------------------------------------------------------------------
 \newenvironment{milestonetable}{%
   \begin{table}[H]
   \caption{Milestones}
@@ -364,18 +349,110 @@
 }
 \newcommand{\roadmaprow}[3]{#1 & #2 & #3 \\}
 
+% ----------------------------------------------------------------------------- Goals
+% table -----------------------------------------------------------------------------
+\makeatletter
+\@ifundefined{c@nogoal}{\newcounter{nogoal}}{}
+\makeatother
+
+\newenvironment{goalstable}{%
+  \setcounter{nogoal}{0}%
+  \begin{table}[H]
+  \caption{Overall Project Goals}
+  \begin{tcolorbox}[
+    colback=white,
+    colframe=NervMist,
+    boxrule=0.5pt,
+    arc=2mm,
+    left=2mm,
+    right=2mm,
+    top=2mm,
+    bottom=2mm
+  ]
+  \renewcommand{\arraystretch}{1.32}%
+  \begin{tabular}{@{}
+    >{\bfseries\color{NervBlue}\raggedright\arraybackslash}p{22mm}
+    >{\raggedright\arraybackslash}p{31mm}
+    >{\centering\arraybackslash}p{49mm}
+    >{\centering\arraybackslash}p{49mm}
+    @{}}
+  \toprule
+  \textbf{NT Goal ID}
+  & \textbf{Project Goal}
+  & \textbf{Success Criteria}
+  & \textbf{Value Target} \\
+  \midrule
+}{%
+  \bottomrule
+  \end{tabular}
+  \end{tcolorbox}
+  \end{table}
+}
+
+\newcommand{\goalrow}[4][]{%
+  \stepcounter{nogoal}%
+  \ifstrempty{#1}
+  {\textbf{NT-N-G\thenogoal}}
+  {\textbf{#1}}
+  & #2
+  & #3
+  & #4 \\
+}
+
 % -----------------------------------------------------------------------------
-% Summary helper
+% Deliverables table
 % -----------------------------------------------------------------------------
+\newenvironment{deliverablestable}{%
+  \begin{table}[H]
+  \caption{Key Deliverables}
+  \begin{tcolorbox}[
+    colback=white,
+    colframe=NervMist,
+    boxrule=0.5pt,
+    arc=2mm,
+    left=2mm,
+    right=2mm,
+    top=2mm,
+    bottom=2mm
+  ]
+  \renewcommand{\arraystretch}{1.32}%
+  \setlength{\tabcolsep}{1.5mm}%
+  \begin{tabular}{@{}
+    >{\bfseries\color{NervBlue}\raggedright\arraybackslash}p{21mm}
+    >{\raggedright\arraybackslash}p{33mm}
+    >{\centering\arraybackslash}p{57mm}
+    >{\centering\arraybackslash}p{24mm}
+    @{}}
+  \toprule
+  \textbf{Deliverable ID}
+  & \textbf{Deliverable}
+  & \textbf{Description}
+  & \textbf{Deadline} \\
+  \midrule
+}{%
+  \end{tabular}
+  \end{tcolorbox}
+  \end{table}
+}
+
+\newcommand{\deliverablerow}[4]{%
+  \textbf{#1}
+  & #2
+  & #3
+  & #4 \\
+}
+
+% ----------------------------------------------------------------------------- Summary
+% helper -----------------------------------------------------------------------------
 \newcommand{\projectsnapshot}[4]{%
   \begin{tcolorbox}[colback=NervBlack,colframe=NervBlack,arc=2mm,boxrule=0pt,left=4mm,right=4mm,top=3mm,bottom=3mm]
-  {\color{white}\textbf{Project Snapshot}}\par\vspace{2mm}
-  \begin{tabularx}{\textwidth}{@{}L{31mm}Y@{}}
-    {\color{NervCyan}\textbf{What it is}} & {\color{white}#1} \\
-    {\color{NervCyan}\textbf{Why it matters}} & {\color{white}#2} \\
-    {\color{NervCyan}\textbf{Current stage}} & {\color{white}#3} \\
-    {\color{NervCyan}\textbf{Next visible result}} & {\color{white}#4} \\
-  \end{tabularx}
+    {\color{white}\textbf{Project Snapshot}}\par\vspace{2mm}
+    \begin{tabularx}{\textwidth}{@{}L{31mm}Y@{}}
+      {\color{NervCyan}\textbf{What it is}}                                               & {\color{white}#1} \\
+      {\color{NervCyan}\textbf{Why it matters}}      & {\color{white}#2} \\
+      {\color{NervCyan}\textbf{Current stage}}       & {\color{white}#3} \\
+      {\color{NervCyan}\textbf{Next visible result}} & {\color{white}#4} \\
+    \end{tabularx}
   \end{tcolorbox}
 }
 
