@@ -5,7 +5,7 @@
   project={Node v0},
   document={Research Notes},
   subtitle={Problem framing, goal association, assumptions and associated research papers},
-  docid={NT-N-M-H-001},
+  docid={NT-N-M-H-000},
   revision={A},
   status={Exploratory Draft},
   author={NervTech Research},
@@ -14,7 +14,7 @@
   stage={Preliminary Research},
   question={Which motor housing architecture will fulfill NT-N-G1, NT-N-G2 and NT-N-G7?},
   keywords={integrated actuator, mechanical design, motor housing, robotics, research notes},
-  abstract={This document collates and analyses multiple research papers and notes for fulfilling Node v0 design goals. Its intended purpose is to isolate observations, assumptions, risks, and design direction before committing to a detailed technical design.}
+  abstract={This document collates and analyses multiple research papers and notes for fulfilling Node v0 design goals in relation to motor housing design. Its intended purpose is to isolate observations, assumptions, risks, and design direction before committing to a detailed technical design.}
 }
 
 \begin{document}
@@ -25,9 +25,10 @@
 \section{Research Snapshot}
 \researchsnapshot
 {Build motor housing to maximise thermal and electromagnetic performance of the actuator, while reducing size and weight.}
-{The highest leverage early decision is the actuator architecture, because it constrains torque density, controllability, thermal behaviour, and manufacturability.}
-{The true operating envelope is still uncertain: load profile, duty cycle, heat rejection, encoder resolution, and gearbox backlash all need validation.}
-{Prototype the smallest credible bench rig and measure torque, speed, temperature rise, backlash, and closed-loop response.}
+{Adhesive bonding is the most suitable mounting method for both stator and rotor, due to its mechanical simplicity, thermal conductivity (scaled by the adhesive chosen) and torque transmissability.
+Bearing tolerances should be designed to be of tolerance class P5, to ensure air gap stability and therefore electromagnetic performance.}
+{The tolerance stackup of the machined rotor and stator components is uncertain, and must be carefully considered such that the machining processes can achieve the specified air gap tolerance of $\pm$ 0.1175 mm.}
+{Do the first iteration of the motor housing design, and do a technical writeup of the design decisions and their impact on the requirements.}
 
 \section{Problem Framing}
 \begin{researchquestion}[System Direction]
@@ -161,6 +162,30 @@ Kollmorgen notes, as a rule of thumb, that "if using thick structural epoxy, [th
 Small grooves are also recommended as adhesive resorvoirs for structural epoxies, but "are considered optional features per the user's discretion" \cite{KollmorgenManual}.
 \\\\
 All manuals note that bonding surfaces should be thoroughly cleaned and degreased prior to bonding, to ensure the optimal adhesion.
+\\\\
+The recommended structural epoxies from the manuals are:
+\begin{itemize}
+  \item Hysol® EA934NA \cite{KollmorgenManual}
+  \item 3M™ Scotchweld™ 2214 \cite{KollmorgenManual}
+\end{itemize}
+
+\subsubsection{Rotor Mounting}
+\textbf{Axial Alignment Control}
+\\
+It is noted in the Kollmorgen manual, that the rotor must be properly aligned with the stator to ensure "proper motor performance" \cite{KollmorgenManual}.
+Kollmorgen recommends retaining rings installed on shoulders to accomplish this, with the shoulder being on the shaft since this is an inrunner architecture.
+For outrunnner architectures, the shoulder would be on the rotor cup, and would locate the rotor relative to the housing bearing using a retaining ring.
+The Mabuchi manual also notes that, for their frameless BLDC motors, the stator must cover all magnets on the rotor with an overshoot tolerance of 0.3mm or less \cite{MabuchiManual}.
+This should be incorporated into the axial tolerance stack of the rotor, which would include the rotor cup shoulder, the bearing axial play and the stator motor housing.
+\\\\
+\textbf{Rotor Bonding}
+\\
+Unlike the stator, the rotor can be bonded to steel rotor cups using retaining compounds \cite{MacconManual} \cite{KollmorgenManual}.
+Kollmorgen gives the example of Loctite® 640 retaining compound, and notes they "equire smooth continuous interface diameters and tight fit tolerances" \cite{KollmorgenManual}.
+Rotor bonding is likely the most suitable method for the Node v0 actuator, since it is a low torque application and the rotor cup can be designed to have a smooth continuous interface with the rotor.
+
+\subsection{Summary and Comparison Table}
+
 
 \clearpage
 
