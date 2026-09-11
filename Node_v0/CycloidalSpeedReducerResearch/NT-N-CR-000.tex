@@ -31,7 +31,7 @@
 
 \section{Problem Framing}
 \begin{researchquestion}[System Direction]
-  What cycloidal speed reducer architecture achieves the QDD required 9:1 gear reduction ratio while maximising efficiency (W/W \%), minimising backlash (arcmin) and ensuring durable and long-lasting operation (cycles/failure) under the specified load and speed conditions?
+  What cycloidal speed reducer architecture maximises efficiency (W/W \%), minimises backlash (arcmin) and ensures durable and long-lasting operation (cycles/failure) under the specified load and speed conditions?
 \end{researchquestion}
 
 \section{Preliminary Direction}
@@ -48,17 +48,21 @@ will not be overly constrained by the motor housing architecture.
 \section{Assumptions}
 \begin{itemize}
   \item Cycloidal speed reducers are the most suitable architecture for Node v0, due to
-        their high torque density, low backlash, and compact form factor.
+         their high torque density, low backlash, and compact form factor. Another
+        major factor is the ease of cycloidal manufacturing, due to its simple geometry
+         and the ability to use standard manufacturing processes.
   \item Steel is the most suitable material for the cycloidal disks and roller pins due
-        to its high strength and wear resistance, and aluminium is suitable for the
+         to its high strength and wear resistance, and aluminium is suitable for the
         other components, due to its machinability.
 \end{itemize}
 
 \newpage
 
 \section{Cycloidal Speed Reducer Operating Principles}
-To understand cycloidal speed reducers, a brief introduction into cycloidal curves and their geometries is required.
-A cycloidal curve is created by tracing a point on a circle, as it rolls without slipping along a line.
+To understand cycloidal speed reducers, a brief introduction into cycloidal curves and
+their geometries is required.
+A cycloidal curve is created by tracing a point on a circle, as it rolls without
+slipping along a line.
 This is demonstrated in the following figure:
 \begin{figure}[H]
   \centering
@@ -67,8 +71,11 @@ This is demonstrated in the following figure:
   \label{fig:cycloidal_curve}
 \end{figure}
 
-When a cycloidal curve is generated with the base being another circle, it generates either an epicycloidal curve or a hypocycloidal curve.
-In the epicycloidal case, the curve is produced by tracing a cycloidal curve on the outside of a circle, while a hypocycloidal curve is produced by tracing a cycloidal curve on the inside of a circle.
+When a cycloidal curve is generated with the base being another circle, it generates
+either an epicycloidal curve or a hypocycloidal curve.
+In the epicycloidal case, the curve is produced by tracing a cycloidal curve on the
+outside of a circle, while a hypocycloidal curve is produced by tracing a cycloidal
+curve on the inside of a circle.
 The following 2 figures show a epicycloidal and hypocycloidal curve, respectively:
 \begin{figure}[H]
   \centering
@@ -83,9 +90,15 @@ The following 2 figures show a epicycloidal and hypocycloidal curve, respectivel
   \label{fig:hypocycloidal_curve}
 \end{figure}
 
-A cycloidal curve is an easy to understand case of a trochoidal curve, which is the same as the cycloidal curve, except that the tracing point is not on the surface of the rolling circle, but is instead offset from the surface of the rolling circle by a distance $r$.
-A hypotrochoidal curve and epitrochoidal curve are the trochoidal versions of hypocycloidal and epicycloidal curves.
-This is shown in the following figure (note that a prolate curve is where the $r$ is greater than the tracing circle radius, while a curtate is where $r$ is less than the tracing circle radius):
+A cycloidal curve is an easy to understand case of a trochoidal curve. A trochoidal
+curve is the same as the cycloidal curve, except that the tracing point is not on the
+surface of the rolling circle, but is instead offset from the surface of the rolling
+circle by a distance $r$.
+A hypotrochoidal curve and epitrochoidal curve are the trochoidal versions of
+hypocycloidal and epicycloidal curves.
+This is shown in the following figure (note that a prolate curve is where the $r$ is
+greater than the tracing circle radius, while a curtate is where $r$ is less than the
+tracing circle radius):
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.6\textwidth]{figures/ProlateCurtateTrochoidCurves.jpg}
@@ -95,76 +108,260 @@ This is shown in the following figure (note that a prolate curve is where the $r
 \newpage
 Hypotrochoidal and epitrochoidal curves have a number of interesting properties:
 \begin{itemize}
-  \item The number of lobes, or segments, in the trochoid is the exact same as the ratio $k = \frac{R}{r}$, as labeled above in \ref{fig:trochoidal_curves}.
-  \item The number of rotations of the tracing circle about its center for one full rotation around the base circle is $k + 1$ for epitrochoidal curves and $k - 1$ for hypotrochoidal curves.
-  \item hypotrochoidal and epitrochoidal curves can be conjugates of one another and mesh together.
+  \item The number of lobes, or segments, in the trochoid is the exact same as the
+         ratio $k = \frac{R}{r}$, as labeled above in \ref{fig:epicycloidal_curve} and
+        \ref{fig:hypocycloidal_curve}.
+  \item The number of rotations of the tracing circle about its center for one full
+         rotation around the base circle is $k + 1$ for epitrochoidal curves and $k -
+        1$  for hypotrochoidal curves.
 \end{itemize}
 
 The second property can be used to reduce speed and convert to torque.
+The kinematic relationship that is used commonly is the number of revolutions done by
+the tracing circle to roll one full revolution around the base circle.
+This is derived by Santos-Pereira in \cite{CycloidalGeometry}, and shows that for the
+epicycloid/epitrochoid case, the number is:
+\[
+  \frac{D}{d}+1
+\]
+and for the hypocycloid/hypotrochoid case:
+\[
+  \frac{D}{d}-1
+\]
+where $D$ is the diameter of the base circle, and $d$ is the diameter of the tracing
+  circle.
+  If $d$ becomes closer to $D$, the number of revolutions that the tracing circle does
+  about its center becomes arbitrarily large for every one revolution around the base
+  circle.
+  Instead of circles, a meshing profile is used to maintain an even rolling contact
+  between the base and tracing circles (for ease of understanding, gears will be used
+  from now on).
+  \\\\
+  The base and tracing gear teeth profiles may be involute, however only if there is a
+  greater than 1 difference between the teeth count of the cycloidal and ring gear, ie
+  $D - d > 1$.
+  This is due to interference issues with standard involute profiles if the difference
+  is 1, and according to Jang et al, a comparison of involute and cycloidal profiles at
+  this teeth ratio demonstrates that involute profiles have less rigidity and require
+  major pressure angle adjustments to function \cite{InvoluteVsCycloidalComparison}.
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.6\textwidth]{figures/InvoluteCycloidalExample.png}
+  \caption{Involute Profile in Cycloidal Orbit}
+  \label{fig:involute_cycloidal_example}
+\end{figure}
+The general alternative to involute profiles is pinwheel meshing, where one of either the base or tracing gear is a pinwheel, and the other is a conjugate envelope of the pinwheel.
+The key advantage of a cycloidal speed reducer is that the plate gear meshes with multiple pins at all points, guaranteeing no backlash in a perfectly manufactured reducer with more evenly distributed load. Furthermore, the even rolling contact between the plate gear and the lobes reduces wear and increases efficiency.
 
 \subsection{Epitrochoidal Case}
-In the epitrochoidal case, an inner disc is manufactured with an epitrochoidal profile.
-It is eccentrically driven, and allowed to rotate about its own center.
-The desirable outcome is a conjugate envelope for the epitrochoidal disc, which would allow for an even, rolling contact to achieve an effect the same as the hypocycloidal curve generation: a tracing circle orbiting inside a base circle.
-Luckily, a hypotrochoidal envelope provides this desirable outcome.
-By manufacturing an outer hypotrochoidal ring gear that has more lobes than the epitrochoidal disc
-
-
-The kinematic relationship that is of interest is the number of revolutions done by the tracing circle to roll one full revolution around the base circle.
-This is derived by Santos-Pereira in \cite{CycloidalGeometry}, and shows that for the epicycloid case, the number is:
-\[
-\frac{D}{d}+1
-\]
-and for the hypocycloid case:
-\[
-\frac{D}{d}-1
-\]
-where $D$ is the diameter of the base circle, and $d$ is the diameter of the tracing circle.
-If $d$ becomes closer to $D$, the number of revolutions that the tracing circle does about its center becomes arbitrarily large for every one revolution around the base circle.
-This angle relationship between the center revolutions of the tracing circle and the base circle forms the basis of the speed reduction in cycloidal drives.
-For proper torque transmission, simple circles cannot be used for the mechanism, and instead meshing profiles are used between the tracing circle and base circle (for ease of understanding, cycloidal gear and ring gear will be used from now on).
+In the epitrochoidal-pinwheel case, the outer ring is the pinwheel, and the inner plate
+gear is of an epitrochoidal profile.
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.6\textwidth]{figures/Instantaneous Centre of Rotation Epitrochoidal Diagram.png}
+  \caption{Instantaneous Centre of Rotation Epitrochoidal Diagram \cite{MechanismAndMachineTheoryPaper}}
+  \label{fig:epitrochoidal_IC_diagram}
+\end{figure}
+The tracing circle is referred to as the cycloidal disc, and the base circle is referred to as the pinwheel.
+The cycloidal disc is eccentrically driven with a crank (shown as Link 2 above), and allowed to rotate about its own center ($O_C$), such that it can roll around the pinwheel.
 \\\\
-The cycloidal and ring gear teeth profiles may be involute, however only if there is a greater than 1 difference between the teeth count of the cycloidal and ring gear, ie $D - d > 1$.
-This is due to interference issues with standard involute profiles if the difference is 1, and according to Jang et al, a comparison of involute and cycloidal profiles at this teeth ratio demonstrates that involute profiles have less rigidity and require major pressure angle adjustments to function \cite{InvoluteVsCycloidalComparison}.
-\\\\
-The general alternative to involute profiles is the pinwheel, -epitrochoid/hypotrochoid meshing. by replacing the ring gear with a set rollers which are equally spaced in a circle.
-From the frame of reference of the cycloidal disc, the rollers trace an envelope around it as it eccentrically orbits. also naturally lends itself to the underlying principle of speed reduction used in this case. As demonstrated by Hwang and Hsieh in \cite{CycloidalKinematics}, "the cycloidal wheel profile will be produced using the inward equidistance to the extended epicycloid and the outward equidistance to the extended hypocycloid".
-This is more easily seen in the following image:
+By keeping following the reference frame of the cycloidal disc, during its eccentric orbit, the rollers would trace its outer edge.
+This profile is the epitrochoidal profile, and is the profile that will be used for the cycloidal disc in the cycloidal speed reducer.
+In \cite{Pollitt}, it was derived that to maintain a gear ratio equivalent to the number of lobes on the epitrochoidal profile, the number of rollers must be one greater than the number of lobes on the epitrochoidal profile.
+The epitrochoid profile is generated by creating an extended epicycloidal curve, from 2 circles with internal tangency, as described in the following section from \cite{CycloidalKinematics}:
+\begin{quote}
+  "One alternative for producing pin wheel epitrochoid meshing is illustrated in Fig. 3(a), in which circles I and 2 are in internal tangency and have separate radii PI and P, , respectively. Point 1 is the instantaneous center of rotation. When circle I rotates counter-clockwise around the circumference of circle 2 in a pure rolling motion, the eccentric throw r is the distance between point p and the center of circle I, and point p will generate an extended epicycloid path. Similarly, as shown in Fig. 3(b), in the pin wheel hypotrochoid meshing design, point q will generate an extended hypocycloid path. Therefore, the extended epicycloid and extended hypocycloid paths could be the center of the rollers, meaning that the cycloidal wheel profile can be generated by the inner and outer envclope methods. In other words, the cycloidal wheel profile will be produced using the inward equidistance to the extended cpicycloid and the outward equidistance to the extended hypocycloid. Here, the rollers are the same as the pins."
+\end{quote}
+
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.8\textwidth]{figures/ExtendedTrochoidalCurveGeneration.png}
-  \caption{Extended Epitrochoidal and Hypotrochoidal Curve Generation}
-  \label{fig:extended_trochoidal_curve_generation}
+  \caption{Pinwheel Mesh Trochoidal Curve Generation}
+  \label{fig:trochoidal_curve_pinwheel_generation}
 \end{figure}
-Meshing within
 
-The key advantage of a cycloidal reducer is that the plate gear meshes at all points with the lobes, guaranteeing no backlash in a perfectly manufactured reducer, and the rolling contact between the plate gear and the lobes reduces wear and increases efficiency.
+\subsection{Hypotrochoidal Case}
+In the hypotrochoidal-pinwheel case, the inner ring is the pinwheel, and the outer
+plate gear is of a trochoidal profile.The inner pinwheel is fixed, and the outer plate
+gear is eccentrically driven with a crank, and allowed to rotate about its own center,
+such that it can roll around the pinwheel.
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth]{figures/Instantaneous Centre of Rotation Hypotrochoidal Diagram.png}
+  \caption{Instantaneous Centre of Rotation Hypotrochoidal Diagram \cite{MechanismAndMachineTheoryPaper}}
+  \label{fig:hypotrochoidal_IC_diagram}
+\end{figure}
+As shown in the previous section, the hypotrochoidal profile can also be generated by using the extended hypocycloidal curve generation method, and the number of rollers must be one less than the number of lobes on the hypotrochoidal profile to maintain a gear ratio equivalent to the number of lobes on the hypotrochoidal profile.
 
-There are 4 different types of cycloidal speed reducer kinematic architectures
-\cite{MechanismAndMachineTheoryPaper}:
-\begin{itemize}
-  \item The stationary ring gear type epicycloid reducer
-  \item The rotating ring gear type epicycloid reducer
-  \item The stationary ring gear type hypocycloid reducer
-  \item The rotating ring gear type hypocycloid reducer
-\end{itemize}
+\subsection{Practical Comparisons}
+Hypotrochoidal speed reducers are a newer architecture compared to the more mature
+epitrochoidal architecture.
+The epitrochoidal architecture has been analysed in many papers for its kinematics,
+manufacturing tolerances, stress analysis and performance, while the hypotrochoidal
+architecture has no well developed supply chain and is still in the realm of research
+and development.
+\\\\
+Despite this, Hwang and Hsieh \cite{CycloidalKinematics} have shown that hypotrochoidal
+speed reducers can provide
+more favourable meshing characteristics than the equivalent epitrochoidal
+configuration.
+This provides a potential advantage in reducing local contact loading and improving
+the durability of the contacting surfaces.
+However, this result should not be interpreted as demonstrating that a complete
+hypotrochoidal reducer will necessarily have higher efficiency or service life,
+as bearing losses, manufacturing errors, lubrication, structural deformation,
+and output mechanism losses must also be considered.
+\\\\
+The conventional epitrochoidal configuration provides significant practical
+advantages in manufacturability.
+Its fixed outer member consists of a circular array of identical cylindrical
+pins or rollers, while the more complex profile is located on the external
+perimeter of the cycloidal disc.
+The cycloidal disc profile can therefore be manufactured using processes such
+as wire EDM, profile milling, or grinding, while commercially available hardened
+rollers or bearing elements may be used for the pinwheel.
+In contrast, the hypotrochoidal arrangement places the complex profile on the
+inside surface of an outer ring.
+This profile remains suitable for wire EDM when manufactured as a through-profile,
+but is less accessible to conventional milling and grinding operations.
+\\\\
+Undercutting and interference are important constraints for both configurations.
+For the hypotrochoidal configuration in particular, Hwang and Hsieh derive a
+feasible design region that simultaneously avoids undercutting of the
+hypotrochoidal profile and interference between adjacent inner pins
+\cite{HypotrochoidalNonUndercutting}.
+Consequently, the eccentricity, pin pitch radius, pin radius, and pin count
+cannot be selected independently.
+The preliminary condition $E<R/N$ derived by Shin and Kwon also applies to the
+profile-generation geometry and prevents discontinuities in the contact angle
+\cite{MechanismAndMachineTheoryPaper}.
+The preliminary advantages and disadvantages of each configuration are summarised
+in Table~\ref{tab:epi_hypo_comparison}.
 
-These can be broadly categorised between 2 aspects: epicycloidal or hypocycloidal profiles, and stationary or rotating ring gears.
+\begin{table}[H]
+  \centering
+  \small
+  \caption{Preliminary comparison of epitrochoidal and hypotrochoidal pinwheel reducers}
+  \label{tab:epi_hypo_comparison}
+  \begin{tabular}{p{0.20\textwidth} p{0.36\textwidth} p{0.36\textwidth}}
+    \hline
+    \textbf{Design Factor} &
+    \textbf{Outer-Pinwheel Epitrochoidal} &
+    \textbf{Inner-Pinwheel Hypotrochoidal} \\
+    \hline
 
-\subsection{Practical Considerations}
-.
+    Contact behaviour &
+    Well understood and widely validated.
+    Multiple lobes can participate in load transmission. &
+    Hwang and Hsieh report more favourable contact-force and curvature
+    characteristics for the configurations investigated. \\
+
+    Manufacturability &
+    Complex profile is on the outside of an inner disc and is readily
+    accessible to wire EDM, milling, or grinding.
+    Outer pinwheel uses simple cylindrical elements. &
+    Complex profile is on the inside of an outer ring.
+    Wire EDM remains practical, but conventional machining access is less
+    convenient. \\
+
+    Packaging &
+    Fixed outer pinwheel integrates naturally into the stationary gearbox
+    housing.
+    Compact inner cycloidal discs are well established. &
+    Outer cycloidal ring may integrate naturally with an output flange and
+    large-diameter bearing.
+    This could simplify the joint load path. \\
+
+    Rotational inertia &
+    The principal cycloidal component is located relatively close to the
+    rotational axis, depending on output architecture. &
+    A rotating outer cycloidal ring places more mass at a large radius and
+    may increase output inertia. \\
+
+    Undercutting and interference &
+    Established design rules and a large body of practical design literature
+    are available. &
+    Requires explicit checks for outer-profile undercutting and adjacent
+    inner-pin interference.
+    A feasible design region is derived in
+    \cite{HypotrochoidalNonUndercutting}. \\
+
+    Tolerances and precision &
+    Extensive published work exists on manufacturing tolerances, profile
+    modification, lost motion, and transmission error. &
+    Much less configuration-specific tolerance literature is available.
+    Sensitivities would need to be derived for the chosen geometry. \\
+
+    Stress and durability modelling &
+    Mature analytical, numerical, and experimental methods are available for
+    contact stress, disc stress, bearings, and load sharing. &
+    Direct contact-force and curvature analyses exist, but complete reducer
+    strength and durability models are less mature. \\
+
+    Design risk for Node v0 &
+    Lower.
+    Provides a well-understood baseline architecture with numerous existing
+    design methods and comparable reducers. &
+    Higher.
+    Potentially advantageous contact and packaging characteristics justify
+    further study, but require more original analysis and validation. \\
+
+    \hline
+  \end{tabular}
+\end{table}
+\newpage
+Based on the current literature, the outer-pinwheel epitrochoidal configuration
+is the lower-risk architecture for the first Node v0 reducer because its
+manufacturing, tolerance, stress, and load-sharing behaviour are significantly
+better characterised.
+The inner-pinwheel hypotrochoidal configuration is nevertheless a credible
+alternative because published contact-force and curvature analysis indicates
+potentially favourable meshing characteristics \cite{CycloidalKinematics}.
+Before selecting either architecture, both should therefore be compared at the
+same reduction ratio, outer diameter, material, face width, and rated output
+torque.
+
 
 \clearpage
 
 \begin{thebibliography}{9}
   \bibitem{MechanismAndMachineTheoryPaper}
   Joong-Ho Shin, Soon-Man Kwon, On the lobe profile design in a cycloid reducer using instant velocity center, Mechanism and Machine Theory, Volume 41, Issue 5, 2006, Pages 596-616, ISSN 0094-114X, https://doi.org/10.1016/j.mechmachtheory.2005.08.001.
+
   \bibitem{CycloidalGeometry}
   Santos-Pereira, O. L., Ferreira, M. (Eds.) (2025). Roullete curves, coin paradox and aristotle's wheel paradox. Revista Brasileira de Ensino de Física. 47. https://doi.org/10.1590/1806-9126-RBEF-2025-0401.
+
   \bibitem{CycloidalKinematics}
   Hwang, Y.-W., Hsieh, C.-F. (2006), “Geometry design and analysis for trochoidal-type speed reducers: With conjugate envelopes,” Transactions of the Canadian Society for Mechanical Engineering, 30(2). DOI: 10.1139/tcsme-2006-0016.
+
   \bibitem{InvoluteVsCycloidalComparison}
   Dae-Jin Jang et al. (2021), “Geometry design and dynamic analysis of a modified cycloid reducer with epitrochoid tooth profile,” Mechanism and Machine Theory, 164, 104399.
+
+  \bibitem{Pollitt}
+  E.P. Pollitt, Some applications of the cycloid machine design, ASME Journal of Engineering for Industry 82 (1960)
+  407–414.
+
+  \bibitem{HypotrochoidalNonUndercutting}
+  Y.-W. Hwang and C.-F. Hsieh,
+  Geometric Design Using Hypotrochoid and Nonundercutting Conditions for an
+  Internal Cycloidal Gear,
+  ASME Journal of Mechanical Design,
+  Vol. 129, No. 4, 2007, pp. 413--420.
+  https://doi.org/10.1115/1.2437806.
+
+  \bibitem{CycloidalStrength}
+  S. Li,
+  Design and strength analysis methods of the trochoidal gear reducers,
+  Mechanism and Machine Theory,
+  Vol. 81, 2014, pp. 140--154.
+  https://doi.org/10.1016/j.mechmachtheory.2014.07.001.
+
+  \bibitem{CycloidalTolerance}
+  K.-S. Lin, K.-Y. Chan and J.-J. Lee,
+  Kinematic error analysis and tolerance allocation of cycloidal gear reducers,
+  Mechanism and Machine Theory,
+  Vol. 124, 2018, pp. 73--91.
+  https://doi.org/10.1016/j.mechmachtheory.2017.12.028.
 \end{thebibliography}
 
 \end{document}
