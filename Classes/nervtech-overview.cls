@@ -309,45 +309,48 @@
 % tables -----------------------------------------------------------------------------
 \newenvironment{milestonetable}{%
   \begin{table}[H]
+  \centering
   \caption{Milestones}
-  \begin{tabular}{@{}L{25mm}L{62mm}L{30mm}L{22mm}@{}}
-  \toprule
+  \begin{tabular}{@{}|L{25mm}|L{62mm}|L{30mm}|L{22mm}|@{}}
+  \hline
   \textbf{Milestone} & \textbf{Meaning} & \textbf{Target} & \textbf{Status} \\
-  \midrule
+  \hline
 }{%
-  \bottomrule
+  
   \end{tabular}
   \end{table}
 }
-\newcommand{\milestonerow}[4]{#1 & #2 & #3 & #4 \\}
+\newcommand{\milestonerow}[4]{#1 & #2 & #3 & #4 \\ \hline}
 
 \newenvironment{stakeholdertable}{%
   \begin{table}[H]
+  \centering
   \caption{Stakeholder Map}
-  \begin{tabular}{@{}L{34mm}L{52mm}L{52mm}@{}}
-  \toprule
+  \begin{tabular}{@{}|L{34mm}|L{52mm}|L{52mm}|@{}}
+  \hline
   \textbf{Audience} & \textbf{What they need to know} & \textbf{How this document helps} \\
-  \midrule
+  \hline
 }{%
-  \bottomrule
+  
   \end{tabular}
   \end{table}
 }
-\newcommand{\stakeholderrow}[3]{#1 & #2 & #3 \\}
+\newcommand{\stakeholderrow}[3]{#1 & #2 & #3 \\ \hline}
 
 \newenvironment{roadmaptable}{%
   \begin{table}[H]
+  \centering
   \caption{Project Roadmap}
-  \begin{tabular}{@{}L{24mm}L{64mm}L{42mm}@{}}
-  \toprule
+  \begin{tabular}{@{}|L{24mm}|L{64mm}|L{42mm}|@{}}
+  \hline
   \textbf{Phase} & \textbf{Focus} & \textbf{Visible Output} \\
-  \midrule
+  \hline
 }{%
-  \bottomrule
+  
   \end{tabular}
   \end{table}
 }
-\newcommand{\roadmaprow}[3]{#1 & #2 & #3 \\}
+\newcommand{\roadmaprow}[3]{#1 & #2 & #3 \\ \hline}
 
 % ----------------------------------------------------------------------------- Goals
 % table -----------------------------------------------------------------------------
@@ -358,6 +361,7 @@
 \newenvironment{goalstable}{%
   \setcounter{nogoal}{0}%
   \begin{table}[H]
+  \centering
   \caption{Overall Project Goals}
   \begin{tcolorbox}[
     colback=white,
@@ -370,20 +374,20 @@
     bottom=2mm
   ]
   \renewcommand{\arraystretch}{1.32}%
-  \begin{tabular}{@{}
-    >{\bfseries\color{NervBlue}\raggedright\arraybackslash}p{22mm}
-    >{\raggedright\arraybackslash}p{31mm}
-    >{\centering\arraybackslash}p{49mm}
-    >{\centering\arraybackslash}p{49mm}
+  \begin{tabular}{@{}|
+    >{\bfseries\color{NervBlue}\raggedright\arraybackslash}p{22mm}|
+    >{\raggedright\arraybackslash}p{31mm}|
+    >{\centering\arraybackslash}p{49mm}|
+    >{\centering\arraybackslash}p{49mm}|
     @{}}
-  \toprule
+  \hline
   \textbf{NT Goal ID}
   & \textbf{Project Goal}
   & \textbf{Success Criteria}
   & \textbf{Value Target} \\
-  \midrule
+  \hline
 }{%
-  \bottomrule
+  
   \end{tabular}
   \end{tcolorbox}
   \end{table}
@@ -396,7 +400,7 @@
   {\textbf{#1}}
   & #2
   & #3
-  & #4 \\
+  & #4 \\ \hline
 }
 
 % -----------------------------------------------------------------------------
@@ -404,6 +408,7 @@
 % -----------------------------------------------------------------------------
 \newenvironment{deliverablestable}{%
   \begin{table}[H]
+  \centering
   \caption{Key Deliverables}
   \begin{tcolorbox}[
     colback=white,
@@ -417,18 +422,18 @@
   ]
   \renewcommand{\arraystretch}{1.32}%
   \setlength{\tabcolsep}{1.5mm}%
-  \begin{tabular}{@{}
-    >{\bfseries\color{NervBlue}\raggedright\arraybackslash}p{21mm}
-    >{\raggedright\arraybackslash}p{33mm}
-    >{\centering\arraybackslash}p{57mm}
-    >{\centering\arraybackslash}p{24mm}
+  \begin{tabular}{@{}|
+    >{\bfseries\color{NervBlue}\raggedright\arraybackslash}p{21mm}|
+    >{\raggedright\arraybackslash}p{33mm}|
+    >{\centering\arraybackslash}p{57mm}|
+    >{\centering\arraybackslash}p{24mm}|
     @{}}
-  \toprule
+  \hline
   \textbf{Deliverable ID}
   & \textbf{Deliverable}
   & \textbf{Description}
   & \textbf{Deadline} \\
-  \midrule
+  \hline
 }{%
   \end{tabular}
   \end{tcolorbox}
@@ -439,7 +444,7 @@
   \textbf{#1}
   & #2
   & #3
-  & #4 \\
+  & #4 \\ \hline
 }
 
 % ----------------------------------------------------------------------------- Summary

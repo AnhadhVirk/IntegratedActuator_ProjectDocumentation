@@ -333,45 +333,48 @@
 % -----------------------------------------------------------------------------
 \newenvironment{evidencetable}{%
   \begin{table}[H]
+  \centering
   \caption{Evidence Matrix}
-  \begin{tabular}{@{}L{27mm}L{58mm}L{31mm}L{24mm}@{}}
-  \toprule
+  \begin{tabular}{@{}|L{27mm}|L{58mm}|L{31mm}|L{24mm}|@{}}
+  \hline
   \textbf{Claim} & \textbf{Evidence / Observation} & \textbf{Source} & \textbf{Confidence} \\
-  \midrule
+  \hline
 }{%
-  \bottomrule
+  
   \end{tabular}
   \end{table}
 }
-\newcommand{\evidencerow}[4]{#1 & #2 & #3 & #4 \\}
+\newcommand{\evidencerow}[4]{#1 & #2 & #3 & #4 \\ \hline}
 
 \newenvironment{assumptiontable}{%
   \begin{table}[H]
+  \centering
   \caption{Assumptions to Validate}
-  \begin{tabular}{@{}L{26mm}L{54mm}L{38mm}L{22mm}@{}}
-  \toprule
+  \begin{tabular}{@{}|L{26mm}|L{54mm}|L{38mm}|L{22mm}|@{}}
+  \hline
   \textbf{Assumption} & \textbf{Why it matters} & \textbf{Validation method} & \textbf{Owner} \\
-  \midrule
+  \hline
 }{%
-  \bottomrule
+  
   \end{tabular}
   \end{table}
 }
-\newcommand{\assumptionrow}[4]{#1 & #2 & #3 & #4 \\}
+\newcommand{\assumptionrow}[4]{#1 & #2 & #3 & #4 \\ \hline}
 
 \newenvironment{researchbacklog}{%
   \begin{table}[H]
+  \centering
   \caption{Research Backlog}
-  \begin{tabular}{@{}L{18mm}L{58mm}L{32mm}L{30mm}@{}}
-  \toprule
+  \begin{tabular}{@{}|L{18mm}|L{58mm}|L{32mm}|L{30mm}|@{}}
+  \hline
   \textbf{ID} & \textbf{Question / Task} & \textbf{Output} & \textbf{Priority} \\
-  \midrule
+  \hline
 }{%
-  \bottomrule
+  
   \end{tabular}
   \end{table}
 }
-\newcommand{\backlogrow}[4]{#1 & #2 & #3 & #4 \\}
+\newcommand{\backlogrow}[4]{#1 & #2 & #3 & #4 \\ \hline}
 
 % -----------------------------------------------------------------------------
 % Summary helper

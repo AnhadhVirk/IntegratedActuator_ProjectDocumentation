@@ -1,24 +1,15 @@
-%% nervtech-engdoc.cls
-%% LaTeX class for NervTech engineering technical documentation
-%% Version: 1.0.0 | Date: 2026-06-25
-%%
-%% Usage:
-%%   \documentclass[confidential]{nervtech-engdoc}
-%%   \nervsetup{project={Integrated Robotic Actuator}, document={System Architecture}, docid={NT-IRA-SYS-001}, revision={A}}
-%%   \begin{document}
-%%   \maketitle
-%%   ...
-%%   \end{document}
-%%
-%% Recommended compiler: XeLaTeX or LuaLaTeX for best typography.
-%% pdfLaTeX is supported with fallback fonts.
+%% nervtech-engdoc.cls % LaTeX class for NervTech engineering technical documentation %
+%Version: 1.0.0 | Date: 2026-06-25 % % Usage: %
+%\documentclass[confidential]{nervtech-engdoc} % \nervsetup{project={Integrated Robotic
+%Actuator}, document={System Architecture}, docid={NT-IRA-SYS-001}, revision={A}} %
+%\begin{document} % \maketitle % ... % \end{document} % % Recommended compiler: XeLaTeX
+%or LuaLaTeX for best typography. % pdfLaTeX is supported with fallback fonts.
 
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{nervtech-engdoc}[2026/06/25 v1.0.0 NervTech Engineering Technical Document Class]
 
-% -----------------------------------------------------------------------------
-% Class options
-% -----------------------------------------------------------------------------
+% ----------------------------------------------------------------------------- Class
+% options -----------------------------------------------------------------------------
 \newif\ifnt@draft
 \newif\ifnt@confidential
 \newif\ifnt@public
@@ -45,9 +36,8 @@
 
 \LoadClass{article}
 
-% -----------------------------------------------------------------------------
-% Core packages
-% -----------------------------------------------------------------------------
+% ----------------------------------------------------------------------------- Core
+% packages -----------------------------------------------------------------------------
 \RequirePackage[margin=22mm,top=25mm,bottom=25mm,headheight=22pt]{geometry}
 \RequirePackage{iftex}
 \RequirePackage{xcolor}
@@ -119,8 +109,8 @@
 \setlength{\parskip}{6pt plus 2pt minus 1pt}
 \setlist{itemsep=2pt,topsep=4pt,leftmargin=1.5em}
 
-% -----------------------------------------------------------------------------
-% NervTech brand colours
+% ----------------------------------------------------------------------------- NervTech
+% brand colours
 % -----------------------------------------------------------------------------
 \definecolor{NervBlack}{HTML}{090D12}
 \definecolor{NervGraphite}{HTML}{151B23}
@@ -143,9 +133,8 @@
 \pagecolor{white}
 \color{ntText}
 
-% -----------------------------------------------------------------------------
-% Metadata keys
-% -----------------------------------------------------------------------------
+% ----------------------------------------------------------------------------- Metadata
+% keys -----------------------------------------------------------------------------
 \makeatletter
 \def\nt@company{NervTech}
 \def\nt@project{Integrated Robotic Actuator}
@@ -188,8 +177,8 @@
 \newcommand{\nervclassification}{\nt@classification}
 \makeatother
 
-% -----------------------------------------------------------------------------
-% Hyperref and PDF metadata
+% ----------------------------------------------------------------------------- Hyperref
+% and PDF metadata
 % -----------------------------------------------------------------------------
 \hypersetup{
   colorlinks=true,
@@ -203,33 +192,32 @@
   pdfcreator={LaTeX with nervtech-engdoc.cls}
 }
 
-% -----------------------------------------------------------------------------
-% Section styling
-% -----------------------------------------------------------------------------
+% ----------------------------------------------------------------------------- Section
+% styling -----------------------------------------------------------------------------
 \titleformat{\section}
-  {\Large\bfseries\color{NervGraphite}}
-  {\llap{\color{NervCyan}\rule[-0.2em]{3pt}{1.35em}\hspace{0.6em}}\thesection}
-  {0.75em}
-  {\MakeUppercase}
+{\Large\bfseries\color{NervGraphite}}
+{\llap{\color{NervCyan}\rule[-0.2em]{3pt}{1.35em}\hspace{0.6em}}\thesection}
+{0.75em}
+{\MakeUppercase}
 
 \titleformat{\subsection}
-  {\large\bfseries\color{NervGraphite}}
-  {\thesubsection}
-  {0.75em}
-  {}
+{\large\bfseries\color{NervGraphite}}
+{\thesubsection}
+{0.75em}
+{}
 
 \titleformat{\subsubsection}
-  {\normalsize\bfseries\color{NervSlate}}
-  {\thesubsubsection}
-  {0.75em}
-  {}
+{\normalsize\bfseries\color{NervSlate}}
+{\thesubsubsection}
+{0.75em}
+{}
 
 \titlespacing*{\section}{0pt}{1.4em}{0.55em}
 \titlespacing*{\subsection}{0pt}{1.0em}{0.35em}
 \titlespacing*{\subsubsection}{0pt}{0.75em}{0.25em}
 
-% -----------------------------------------------------------------------------
-% Captions and tables
+% ----------------------------------------------------------------------------- Captions
+% and tables
 % -----------------------------------------------------------------------------
 \captionsetup{
   font=small,
@@ -243,8 +231,8 @@
 \newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
 \newcolumntype{R}[1]{>{\raggedleft\arraybackslash}p{#1}}
 
-% -----------------------------------------------------------------------------
-% Header and footer
+% ----------------------------------------------------------------------------- Header
+% and footer
 % -----------------------------------------------------------------------------
 \makeatletter
 \pagestyle{fancy}
@@ -259,51 +247,50 @@
 \renewcommand{\footrule}{\hbox to\headwidth{\color{NervMist}\leaders\hrule height \footrulewidth\hfill}}
 \makeatother
 
-% -----------------------------------------------------------------------------
-% Title page
-% -----------------------------------------------------------------------------
+% ----------------------------------------------------------------------------- Title
+% page -----------------------------------------------------------------------------
 \makeatletter
 \renewcommand{\maketitle}{%
   \begin{titlepage}
-  \thispagestyle{empty}
-  \begin{tikzpicture}[remember picture,overlay]
+    \thispagestyle{empty}
+    \begin{tikzpicture}[remember picture,overlay]
     \fill[NervBlack] (current page.north west) rectangle ([yshift=-120mm]current page.north east);
     \fill[NervBlue] ([yshift=-120mm]current page.north west) rectangle ([yshift=-124mm]current page.north east);
     \fill[NervCyan] ([xshift=28mm,yshift=-124mm]current page.north west) rectangle ([xshift=95mm,yshift=-127mm]current page.north west);
     \draw[NervCyan,opacity=0.35,line width=0.6pt] ([xshift=-8mm,yshift=-22mm]current page.north east) -- ([xshift=-74mm,yshift=-104mm]current page.north east);
     \draw[NervBlue,opacity=0.45,line width=1.2pt] ([xshift=-30mm,yshift=-18mm]current page.north east) -- ([xshift=-124mm,yshift=-110mm]current page.north east);
     \fill[NervCyan,opacity=0.12] ([xshift=-44mm,yshift=-26mm]current page.north east) circle (22mm);
-  \end{tikzpicture}
+    \end{tikzpicture}
 
-  \vspace*{10mm}
-  {\color{white}
-    \begin{minipage}[t]{0.60\textwidth}
-      {\fontsize{22}{24}\selectfont\bfseries\nt@company}\par
-      \vspace{2mm}
-      {\small\MakeUppercase{Robotics Systems Engineering}}\par
-    \end{minipage}
-    \hfill
-    \begin{minipage}[t]{0.32\textwidth}\raggedleft
-      \ifx\nt@logo\@empty
-        {\large\bfseries NT}\;{\color{NervCyan}\rule{18mm}{1.4pt}}\par
-      \else
-        \includegraphics[height=16mm,keepaspectratio]{\nt@logo}\par
-      \fi
-      \vspace{3mm}
-      {\small\color{NervCyan}\MakeUppercase{\nt@classification}}\par
-    \end{minipage}
-  }
+    \vspace*{10mm}
+    {\color{white}
+      \begin{minipage}[t]{0.60\textwidth}
+        {\fontsize{22}{24}\selectfont\bfseries\nt@company}\par
+        \vspace{2mm}
+        {\small\MakeUppercase{Robotics Systems Engineering}}\par
+      \end{minipage}
+      \hfill
+      \begin{minipage}[t]{0.32\textwidth}\raggedleft
+        \ifx\nt@logo\@empty
+          {\large\bfseries NT}\;{\color{NervCyan}\rule{18mm}{1.4pt}}\par
+        \else
+          \includegraphics[height=16mm,keepaspectratio]{\nt@logo}\par
+        \fi
+        \vspace{3mm}
+        {\small\color{NervCyan}\MakeUppercase{\nt@classification}}\par
+      \end{minipage}
+    }
 
-  \vspace*{30mm}
-  {\color{white}
-    {\hyphenpenalty=10000\exhyphenpenalty=10000\fontsize{27}{32}\selectfont\bfseries\raggedright\nt@document}\par
-    \vspace{4mm}
-    {\fontsize{14}{17}\selectfont\color{NervMist}\nt@subtitle}\par
-  }
+    \vspace*{30mm}
+    {\color{white}
+      {\hyphenpenalty=10000\exhyphenpenalty=10000\fontsize{27}{32}\selectfont\bfseries\raggedright\nt@document}\par
+      \vspace{4mm}
+      {\fontsize{14}{17}\selectfont\color{NervMist}\nt@subtitle}\par
+    }
 
-  % Project identity card: deliberately placed below the blue accent band so it
-  % cannot overlap or clip into the title-page colour block.
-  \begin{tikzpicture}[remember picture,overlay]
+    % Project identity card: deliberately placed below the blue accent band so it cannot
+    % overlap or clip into the title-page colour block.
+    \begin{tikzpicture}[remember picture,overlay]
     \node[
       anchor=north west,
       fill=white,
@@ -318,76 +305,76 @@
       \vspace{1mm}
       {\Large\bfseries\color{NervGraphite}\nt@project}\par
     };
-  \end{tikzpicture}
+    \end{tikzpicture}
 
-  \vspace*{44mm}
-  \vfill
-  \begin{tcolorbox}[
-    colback=white,
-    colframe=NervMist,
-    boxrule=0.5pt,
-    arc=2mm,
-    left=5mm,right=5mm,top=4mm,bottom=4mm,
-    width=\textwidth
-  ]
-  \begin{tabularx}{\textwidth}{@{}L{30mm}Y L{28mm}Y@{}}
-    \textbf{Document ID} & \nt@docid & \textbf{Revision} & \nt@revision \\
-    \textbf{Status} & \nt@status & \textbf{Date} & \nt@date \\
-    \textbf{Author} & \nt@author & \textbf{Approver} & \nt@approver \\
-    \textbf{Owner} & \nt@owner & \textbf{Class} & \nt@classification \\
-  \end{tabularx}
-  \end{tcolorbox}
-
-  \ifx\nt@abstract\@empty\else
-    \vspace{5mm}
+    \vspace*{44mm}
+    \vfill
     \begin{tcolorbox}[
-      colback=NervMist,
-      colframe=NervMist,
-      boxrule=0pt,
-      arc=2mm,
-      left=5mm,right=5mm,top=4mm,bottom=4mm
-    ]
-    \textbf{Abstract}\par\vspace{1mm}\nt@abstract
+        colback=white,
+        colframe=NervMist,
+        boxrule=0.5pt,
+        arc=2mm,
+        left=5mm,right=5mm,top=4mm,bottom=4mm,
+        width=\textwidth
+      ]
+      \begin{tabularx}{\textwidth}{@{}L{30mm}Y L{28mm}Y@{}}
+        \textbf{Document ID} & \nt@docid  & \textbf{Revision} & \nt@revision       \\
+        \textbf{Status}      & \nt@status & \textbf{Date}     & \nt@date           \\
+        \textbf{Author}      & \nt@author & \textbf{Approver} & \nt@approver       \\
+        \textbf{Owner}       & \nt@owner  & \textbf{Class}    & \nt@classification \\
+      \end{tabularx}
     \end{tcolorbox}
-  \fi
 
-  \vspace{5mm}
-  {\small\color{NervSteel}\textbf{Keywords:} \nt@keywords}\par
-  \vspace{4mm}
-  {\small\color{NervSteel}\textcopyright\ \the\year\ \nt@company. All rights reserved.}
+    \ifx\nt@abstract\@empty\else
+      \vspace{5mm}
+      \begin{tcolorbox}[
+          colback=NervMist,
+          colframe=NervMist,
+          boxrule=0pt,
+          arc=2mm,
+          left=5mm,right=5mm,top=4mm,bottom=4mm
+        ]
+        \textbf{Abstract}\par\vspace{1mm}\nt@abstract
+      \end{tcolorbox}
+    \fi
+
+    \vspace{5mm}
+    {\small\color{NervSteel}\textbf{Keywords:} \nt@keywords}\par
+    \vspace{4mm}
+    {\small\color{NervSteel}\textcopyright\ \the\year\ \nt@company. All rights reserved.}
   \end{titlepage}
   \setcounter{page}{1}
 }
 \makeatother
 
-% -----------------------------------------------------------------------------
-% Optional watermark
+% ----------------------------------------------------------------------------- Optional
+% watermark
 % -----------------------------------------------------------------------------
 \makeatletter
 \ifnt@watermark
   \RequirePackage{eso-pic}
   \AddToShipoutPictureBG{%
     \begin{tikzpicture}[remember picture,overlay]
-      \node[rotate=35,scale=9,text=NervMist,opacity=0.20] at (current page.center) {DRAFT};
+    \node[rotate=35,scale=9,text=NervMist,opacity=0.20] at (current page.center) {DRAFT};
     \end{tikzpicture}%
   }
 \fi
 \makeatother
 
-% -----------------------------------------------------------------------------
-% Callout boxes for engineering documentation
+% ----------------------------------------------------------------------------- Callout
+% boxes for engineering documentation
 % -----------------------------------------------------------------------------
 \tcbset{
   ntbox/.style={
-    enhanced,
-    sharp corners=south,
-    arc=1.2mm,
-    boxrule=0pt,
-    leftrule=2.6mm,
-    left=3mm,right=3mm,top=2mm,bottom=2mm,
-    fonttitle=\bfseries,
-    coltitle=NervGraphite
-  }
+      enhanced,
+      sharp corners=south,
+      arc=1.2mm,
+      boxrule=0pt,
+      leftrule=2.6mm,
+      left=3mm,right=3mm,top=2mm,bottom=2mm,
+      fonttitle=\bfseries,
+      coltitle=NervGraphite
+    }
 }
 
 \newtcolorbox{designnote}[1][]{
@@ -431,90 +418,96 @@
 \newenvironment{revisionhistory}{%
   \section*{Revision History}
   \addcontentsline{toc}{section}{Revision History}
-  \begin{tabular}{@{}L{16mm}L{26mm}L{32mm}L{75mm}@{}}
-  \toprule
+  \centering
+  \begin{tabular}{@{}|L{16mm}|L{26mm}|L{32mm}|L{75mm}|@{}}
+  \hline
   \textbf{Rev.} & \textbf{Date} & \textbf{Author} & \textbf{Change Description} \\
-  \midrule
+  \hline
 }{%
-  \bottomrule
+
   \end{tabular}
 }
-\newcommand{\revisionrow}[4]{#1 & #2 & #3 & #4 \\}
+\newcommand{\revisionrow}[4]{#1 & #2 & #3 & #4 \\ \hline}
 
 \newenvironment{approvaltable}{%
   \section*{Approval}
   \addcontentsline{toc}{section}{Approval}
-  \begin{tabular}{@{}L{28mm}L{54mm}L{32mm}L{26mm}@{}}
-  \toprule
+  \centering
+  \begin{tabular}{@{}|L{28mm}|L{54mm}|L{32mm}|L{26mm}|@{}}
+  \hline
   \textbf{Role} & \textbf{Name} & \textbf{Signature} & \textbf{Date} \\
-  \midrule
+  \hline
 }{%
-  \bottomrule
+
   \end{tabular}
 }
-\newcommand{\approvalrow}[4]{#1 & #2 & #3 & #4 \\}
+\newcommand{\approvalrow}[4]{#1 & #2 & #3 & #4 \\ \hline}
 
 % -----------------------------------------------------------------------------
 % Engineering tables
 % -----------------------------------------------------------------------------
 \newenvironment{requirementstable}{%
   \begin{table}[H]
+  \centering
   \caption{Requirements}
-  \begin{tabular}{@{}L{19mm}L{19mm}L{62mm}L{22mm}L{22mm}@{}}
-  \toprule
-  \textbf{ID} & \textbf{Type} & \textbf{Requirement} & \textbf{Priority} & \textbf{Verification} \\
-  \midrule
+  \begin{tabular}{@{}|L{19mm}|L{19mm}|L{62mm}|L{22mm}|L{22mm}|@{}}
+  \hline
+  \textbf{ID} & \textbf{Type} & \textbf{Requirement} & \textbf{Driving Goal} & \textbf{Verification} \\
+  \hline
 }{%
-  \bottomrule
+
   \end{tabular}
   \end{table}
 }
-\newcommand{\reqrow}[5]{#1 & #2 & #3 & #4 & #5 \\}
+\newcommand{\reqrow}[5]{#1 & #2 & #3 & #4 & #5 \\ \hline}
 
 \newenvironment{bomtable}{%
   \begin{table}[H]
+  \centering
   \caption{Bill of Materials}
-  \begin{tabular}{@{}L{14mm}L{65mm}L{24mm}L{18mm}R{18mm}@{}}
-  \toprule
+  \begin{tabular}{@{}|L{14mm}|L{65mm}|L{24mm}|L{18mm}|R{18mm}|@{}}
+  \hline
   \textbf{Item} & \textbf{Description} & \textbf{Part / Spec} & \textbf{Qty} & \textbf{Est. Cost} \\
-  \midrule
+  \hline
 }{%
-  \bottomrule
+
   \end{tabular}
   \end{table}
 }
-\newcommand{\bomrow}[5]{#1 & #2 & #3 & #4 & #5 \\}
+\newcommand{\bomrow}[5]{#1 & #2 & #3 & #4 & #5 \\ \hline}
 
 \newenvironment{testcasetable}{%
   \begin{table}[H]
+  \centering
   \caption{Verification Test Cases}
-  \begin{tabular}{@{}L{18mm}L{52mm}L{52mm}L{20mm}@{}}
-  \toprule
+  \begin{tabular}{@{}|L{18mm}|L{52mm}|L{52mm}|L{20mm}|@{}}
+  \hline
   \textbf{Test ID} & \textbf{Procedure} & \textbf{Acceptance Criteria} & \textbf{Result} \\
-  \midrule
+  \hline
 }{%
-  \bottomrule
+
   \end{tabular}
   \end{table}
 }
-\newcommand{\testrow}[4]{#1 & #2 & #3 & #4 \\}
+\newcommand{\testrow}[4]{#1 & #2 & #3 & #4 \\ \hline}
 
 \newenvironment{interfacetable}{%
   \begin{table}[H]
+  \centering
   \caption{System Interfaces}
-  \begin{tabular}{@{}L{23mm}L{23mm}L{49mm}L{49mm}@{}}
-  \toprule
+  \begin{tabular}{@{}|L{23mm}|L{23mm}|L{49mm}|L{49mm}|@{}}
+  \hline
   \textbf{Interface} & \textbf{Domain} & \textbf{Signal / Data} & \textbf{Constraint} \\
-  \midrule
+  \hline
 }{%
-  \bottomrule
+
   \end{tabular}
   \end{table}
 }
-\newcommand{\interfacerow}[4]{#1 & #2 & #3 & #4 \\}
+\newcommand{\interfacerow}[4]{#1 & #2 & #3 & #4 \\ \hline}
 
-% -----------------------------------------------------------------------------
-% Code listing style
+% ----------------------------------------------------------------------------- Code
+% listing style
 % -----------------------------------------------------------------------------
 \lstdefinestyle{nervtech}{
   basicstyle=\ttfamily\small,
@@ -550,19 +543,19 @@
 % Compact project summary block
 \newcommand{\systemsummary}[4]{%
   \begin{tcolorbox}[
-    colback=NervBlack,
-    colframe=NervBlack,
-    arc=2mm,
-    boxrule=0pt,
-    left=4mm,right=4mm,top=3mm,bottom=3mm
-  ]
-  {\color{white}\textbf{System Summary}}\par\vspace{2mm}
-  \begin{tabularx}{\textwidth}{@{}L{30mm}Y@{}}
-    {\color{NervCyan}\textbf{Architecture}} & {\color{white}#1} \\
-    {\color{NervCyan}\textbf{Control}} & {\color{white}#2} \\
-    {\color{NervCyan}\textbf{Sensing}} & {\color{white}#3} \\
-    {\color{NervCyan}\textbf{Safety}} & {\color{white}#4} \\
-  \end{tabularx}
+      colback=NervBlack,
+      colframe=NervBlack,
+      arc=2mm,
+      boxrule=0pt,
+      left=4mm,right=4mm,top=3mm,bottom=3mm
+    ]
+    {\color{white}\textbf{System Summary}}\par\vspace{2mm}
+    \begin{tabularx}{\textwidth}{@{}L{30mm}Y@{}}
+      {\color{NervCyan}\textbf{Architecture}}                                   & {\color{white}#1} \\
+      {\color{NervCyan}\textbf{Control}} & {\color{white}#2} \\
+      {\color{NervCyan}\textbf{Sensing}} & {\color{white}#3} \\
+      {\color{NervCyan}\textbf{Safety}}  & {\color{white}#4} \\
+    \end{tabularx}
   \end{tcolorbox}
 }
 

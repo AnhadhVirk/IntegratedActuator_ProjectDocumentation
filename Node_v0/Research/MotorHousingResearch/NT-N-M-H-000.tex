@@ -1,8 +1,8 @@
-\documentclass[internal]{../../classes/nervtech-research}
+\documentclass[internal]{../../../classes/nervtech-research}
 
 \nervsetup{
   company={NervTech},
-  project={Node v0},
+  project={Node},
   document={Research Notes},
   subtitle={Problem framing, goal association, assumptions and associated research papers},
   docid={NT-N-M-H-000},
@@ -14,7 +14,7 @@
   stage={Preliminary Research},
   question={Which motor housing architecture will fulfill NT-N-G1, NT-N-G2 and NT-N-G7?},
   keywords={integrated actuator, mechanical design, motor housing, robotics, research notes},
-  abstract={This document collates and analyses multiple research papers and notes for fulfilling Node v0 design goals in relation to motor housing design. Its intended purpose is to isolate observations, assumptions, risks, and design direction before committing to a detailed technical design.}
+  abstract={This document collates and analyses multiple research papers and notes for fulfilling Node design goals in relation to motor housing design. Its intended purpose is to isolate observations, assumptions, risks, and design direction before committing to a detailed technical design.}
 }
 
 \begin{document}
@@ -36,13 +36,13 @@ Bearing tolerances should be designed to be of tolerance class P5, to ensure air
 \end{researchquestion}
 
 \section{Preliminary Direction}
-This research document will collate results from multiple research papers and notes to inform the design of a motor housing for Node v0.
+This research document will collate results from multiple research papers and notes to inform the design of a motor housing for Node.
 The goal is to identify the most promising motor housing architecture that meets the specified design goals (NT-N-G1, NT-N-G2, NT-N-G7).
 A preliminary frameless outrunner BLDC motor has been selected, informed by cost and performance requirements.
 
 \section{Assumptions}
 \begin{itemize}
-  \item The frameless outrunner BLDC architecture will provide the highest torque density and lowest thermal resistance for the Node v0 actuator.
+  \item The frameless outrunner BLDC architecture will provide the highest torque density and lowest thermal resistance for the Node actuator.
   \item Aluminium provides the best balance of thermal conductivity, weight, and manufacturability for the motor housing.
 \end{itemize}
 
@@ -65,10 +65,10 @@ The magnetic, thermal and electrical properties of the motor are taken from the 
   \label{fig:wk8115_specifications}
 \end{figure}
 \newline
-Figure~\ref{fig:wk8115_dimensions} will inform the tolerances and mechanical design of the Node v0 motor housing, while Figure~\ref{fig:wk8115_specifications} will inform the thermal and electromagnetic characteristics of the Node v0 actuator.
+Figure~\ref{fig:wk8115_dimensions} will inform the tolerances and mechanical design of the Node motor housing, while Figure~\ref{fig:wk8115_specifications} will inform the thermal and electromagnetic characteristics of the Node actuator.
 
 \section{Existing Motor Integration Guidelines}
-Several motion control companies provide mounting and installation guidelines for frameless BLDC motors, which can be applied to the Node v0 motor housing design.
+Several motion control companies provide mounting and installation guidelines for frameless BLDC motors, which can be applied to the Node motor housing design.
 \\\\
 \textbf{Note:}
 \\
@@ -111,7 +111,7 @@ This is shown for inrunner architectures in the following figures:
 
 According to Kollmorgen, axial clamping is recommended for "low torque applications" \cite{KollmorgenManual}.
 Furthermore, Kollmorgen do not recommended it for "high shock/vibration applications ... or for peak torques greater than 50 N-m without special design considerations".
-Geometrically, axial clamping is easier to integrate into housing for inrunner motors vs outrunner motors, making it less suitable for the Node v0 actuator.
+Geometrically, axial clamping is easier to integrate into housing for inrunner motors vs outrunner motors, making it less suitable for the Node actuator.
 Axial clamping also requires a high degree of concentricity between the two end caps, which is difficult to achieve in a small form factor.
 \\\\
 Since the outrunner stators are located inside the rotor, the end caps would be end caps attached to cylindrical tube-like locating features.
@@ -182,7 +182,7 @@ This should be incorporated into the axial tolerance stack of the rotor, which w
 \\
 Unlike the stator, the rotor can be bonded to steel rotor cups using retaining compounds \cite{MacconManual} \cite{KollmorgenManual}.
 Kollmorgen gives the example of Loctite® 640 retaining compound, and notes they "equire smooth continuous interface diameters and tight fit tolerances" \cite{KollmorgenManual}.
-Rotor bonding is likely the most suitable method for the Node v0 actuator, since it is a low torque application and the rotor cup can be designed to have a smooth continuous interface with the rotor.
+Rotor bonding is likely the most suitable method for the Node actuator, since it is a low torque application and the rotor cup can be designed to have a smooth continuous interface with the rotor.
 
 \subsection{Summary and Comparison Table}
 
