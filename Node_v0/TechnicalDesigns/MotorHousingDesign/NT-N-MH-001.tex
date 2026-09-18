@@ -190,7 +190,8 @@ Cycloidal reducer bearings must also be chosen to withstand the forces produced 
   {Endurance test with pre- and post-test backlash and torque-ripple measurement}
 
 \end{requirementstable}
-
+\newpage
+\section{Design}
 \subsection{Rotor Cup Design}
 \subsubsection{Bond Line Specifications}
 The rotor cup design must be mounted to the rotor such that the rotor cup does not slip or rotate relative to the rotor during operation, as this would cause a loss of torque transmission and potentially damage the actuator (NT-N-IRQ1).
@@ -211,14 +212,96 @@ This is suitable for the application, as the maximum torque transmitted through 
 It must also be located such that its central axis is aligned with the rotor axis, as any misalignment would cause uneven air gaps (see NT-N-MH-000 for preliminary research), leading to torque ripple and potential damage to the actuator (NT-N-IRQ1) (NT-N-IRQ5).
 Slots for locating pins can be machined onto the backiron at 180° separation, and corresponding slots can be machined onto the rotor cup to accommodate these pins (NT-N-IRQ1) (NT-N-IRQ5).
 \subsubsection{Rotor Cup Cycloidal Integration}
-From the research done in NT-N-CR-000, to integrate an epitrochoidal-pinwheel speed reducer into the actuator (NT-N-IRQ1), 2 epitrochoidal profiles in 180° phase separation must be machined onto the output side of the rotor cup.
+From the research done in NT-N-CR-000, to integrate an epitrochoidal-pinwheel speed reducer into the actuator (NT-N-IRQ1), 2 epitrochoidal profiles in 180° phase separation must be machined and placed on cranks, also with 180° phase separation.
 The 2 epitrochoidal profiles reduce the vibration from the eccentric orbit of one profile (NT-N-IRQ2).
-To directly machine the epitrochoidal profiles into the rotor cup, the rotor cup must have bearings that can withstand the overturning moment forces of the cycloidal output, and the radial forces from their respective eccentric orbits (NT-N-IRQ15).
-\subsubsection{Rotor Cup Stress Analysis}
-There should be no varying axial forces on the output flange of the actuator.
+To make the stackup of rotor cup - eccentric shaft - bearing - reducer as compact as possible, the bearings used must have minimal thickness while being able to withstand the overturning moment forces of the cycloidal output, and the radial forces from their respective eccentric orbits (NT-N-IRQ13).
+The cycloidal discs must furthermore be machined of materials that minimise thickness while withstanding all hertzian contact stresses, and output load stresses (NT-N-IRQ12).
+\subsubsection{Rotor Cup Force Analysis}
 According to NT-N-IRQ1, the actuator should be able to apply 200Nm at a lever arm of 0.25m, up to 50Hz.
 Resisting axial forces as a result of moving loads is not mentioned in the requirements and is therefore not considered in the stress analysis.
 Static axial forces will, however, be considered as the actuator may be mounted in a variety of configurations, which may include resistance of a payload's weight when mounted parallel to the ground.
+\\\\
+To make a simplified model of the most basic load the actuator will have to carry, the following free body diagram was created, in the plane normal to the rotational axis fo the actuator (note the rectangular beam is represenational, and may have a more complex geometry and mass distribution):
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.7\textwidth]{figures/FreeBodyDiagrams_Beam.png}
+  \caption{Simplified Load FBD}
+  \label{fig:SimplifiedLoadFBD}
+\end{figure}
+The parameter of interest is $\theta$, which denotes the angular displacement of the actuator.
+The output torque of the actuator is denoted as $T$, and the radial reaction force of the bearing is denoted as $V$.
+Using the free body diagram, we can find the equation of motion of the actuator (disregarding its internal dynamics at this stage) and the statics of the radial load on the bearings.
+\[
+\begin{aligned}
+  J\ddot{\theta}&=T - \int_{0}^{L}9.8\cdot m(x) x\cos{\theta}dx - PL
+  \\
+  0 &= V - P - 9.81M
+\end{aligned}
+\]
+$m(x)$ is the function of linkage mass at distance $x$, and $M$ is the total mass of the linkage.
+The mass moment of inertia $J$, is a function of the properties of the beam, and may be defined as follows:
+\[
+\begin{aligned}
+  J = \int r_{\perp}^{2}\,dm
+\end{aligned}
+\]
+We consider the idealised worst case, where the mass of the linkage is concentrated at its very end, and then compute the mass moment of inertia as well as the other mass dependent terms. According to NT-N-IRQ1, the mass would be 20kgs:
+\[
+\begin{aligned}
+  J &= 20L^2
+  \\
+  20L^2\ddot{\theta} &=T - 20 \cdot 9.8 \cdot \cos\theta L - PL
+  \\
+  T &= 20L^2\ddot{\theta} + 20 \cdot 9.8 \cdot \cos\theta L + PL
+  \\
+  T &= 20L^2\ddot{\theta} + 20 \cdot 9.8 \cdot \cos\theta L + PL
+\end{aligned}
+\]
+With $L$ being 0.25 metres, and assuming the very limit of capability being when acceleration is 0, the equation simplifies to:
+\[
+\begin{aligned}
+  T = 49\cos\theta + 0.25P
+\end{aligned}
+\]
+Since NT-N-IRQ1 requires only a 20kg payload to be carried in frequencies comparable to human motion, we can assume that in the worst case, with $\cos \theta$ being 1, we will not be able to apply any external, torque-generating forces, represented by $P$.
+However, as $\cos \theta$ goes to 0, these external forces may increase up to 196N to match the force generated by a 20kg payload in the worst case.
+\\\\
+Standard integrated actuators output generated power through a flange, with the output payload being fastened to the flange via machine screws.
+The force and stress analysis done on the flange will be used to choose the correct output transmission bearing.
+\\\\
+From the analysis already done in the Axial Facing Plane, the radial load on the bearing will be at a maximum 196N.
+In the bottom of Figure~\ref{fig:SimplifiedLoadFBD} the Lateral Facing free body diagram is represented.
+In the simplified version of the free body diagram, if the beam is subject to the entire weight of the load (which is at a maximum 196N derived from NT-N-IRQ1) in the axial direction, then the output bearing must resist axial laods of up to 196N.
+\\\\
+As $P$ is applied with some offset y to the fastened plane on the right, there will be a moment created on the output bearing:
+\[
+M = P \cdot y
+\]
+As an assumption, the width of the lever arm described in NT-N-IRQ1 will not exceed its length, and is therefore capped at 0.25m (even this case is unrealistic).
+Therefore, the moment will be, at worst, as follows:
+\[
+\begin{aligned}
+  M &= 196 \cdot 0.25
+  M &= 48Nm
+\end{aligned}
+\]
+Finally, the output speed is required for finalising output bearing choice.
+NT-N-IRQ1 dictates that the payload will move at motion frequencies of 20Hz, and it is assumed that the angular displacement of one cycle is at a maximum half a revolution.
+Thus, the calculation for angular velocity is as follows:
+\[
+  \omega = 20\pi \ rad\cdot s^{-1}
+\]
+The bearing must be able to resist these loads at 600RPM for 10,000 hours without failure (NT-N-IRQ1, NT-N-IRQ9, NT-N-IRQ13)
+Since the actuator should also be sealed from dust and high moisture (NT-N-IRQ10), the bearing should be sealed.
+A table of the bearing requirements is as follows:
+\begin{itemize}
+  \item Must last for 10,000 hours without failing.
+  \item Must resist 196N of axial force.
+  \item Must resist 196N of radial force.
+  \item Must resist 49Nm of overturning moment force.
+  \item Must operate at 500 RPM.
+\end{itemize}
+
 
 \begin{thebibliography}{9}
 
