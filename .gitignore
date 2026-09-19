@@ -5,3 +5,7 @@
 *.toc
 *.fls
 *.fdb_latexmk
+*.pdf
+!/NT/
+!/NT/**/
+!/NT/**/*.pdf
