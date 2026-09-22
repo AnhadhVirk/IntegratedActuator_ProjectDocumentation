@@ -35,3 +35,22 @@ The Software architecture will use FreeRTOS for resource and thread management o
 The FPGA operations will include inverse Park and Clarke transforms, encoder calculations and ADC filtering, while the MCU will send Torque commands via a Dual-Port RAM interface.
 
 ## Repository Directory Structure
+```text
+IntegratedActuator_ProjectDocumentation
+├── README.md
+├── NT/
+│   └── N/
+│       ├── CR/
+|       ├── OVR/
+|       ├── P/
+│       └── MH/
+├── Classes/
+└── Node_v0/
+        ├── CycloidalSpeedReducerResearch/
+        ├── ProjectOverview/
+        ├── Research/
+        └── TechnicalDesigns/
+```
+Within the NT folder are all the generated pdf artefacts from the LaTeX files under Node_v0.
+Underneath Node_v0, you can see preliminary research under the Research folder, where all preliminary research that was done before designed underneath TechnicalDesigns is done (mainly for architecture exploration).
+In the ProjectOverview tab, the overview of the project's goals can be found, and under TechnicalDesigns, all mathematics done towards the design of each component can be found. CAD drawings are also shown underneath TechnicalDesigns (TBD).
